@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASIT — Australian Social Investment Trust</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy2: #0f2040;
+    --teal: #00b8a0;
+    --teal2: #00d4b8;
+    --gold: #f4a729;
+    --gold2: #ffc750;
+    --coral: #ff6b6b;
+    --slate: #8899aa;
+    --light: #e8eef4;
+    --white: #ffffff;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --tier1: #00b8a0;
+    --tier2: #f4a729;
+    --tier3: #7c5cbf;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #0a1628 0%, #0f2040 60%, #0a2518 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--teal), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: 18px; color: var(--navy);
+  }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+  .logo-sub { font-size: 10px; color: var(--slate); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .nav { display: flex; gap: 4px; }
+  .nav-btn {
+    padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    background: transparent; color: var(--slate); transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-btn:hover { background: var(--card); color: var(--white); }
+  .nav-btn.active { background: rgba(0,184,160,0.15); color: var(--teal); }
+
+  .header-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(0,184,160,0.1); border: 1px solid rgba(0,184,160,0.2);
+    border-radius: 20px; padding: 6px 14px; font-size: 12px; color: var(--teal);
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* ── VIEWS ── */
+  .view { display: none; animation: fadeIn 0.3s ease; }
+  .view.active { display: block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── LAYER 4: ASIT MASTER DASHBOARD ── */
+  .master-hero {
+    background: linear-gradient(160deg, #0a1628 0%, #0a2518 40%, #1a1428 100%);
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .master-hero-inner { max-width: 1400px; margin: 0 auto; }
+  .master-title { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; line-height: 1.2; }
+  .master-title span { color: var(--teal); }
+  .master-sub { color: var(--slate); font-size: 15px; margin-top: 8px; max-width: 600px; }
+
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+    max-width: 1400px; margin: 2rem auto 0; padding: 0 2rem;
+  }
+  .kpi {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px; position: relative; overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .kpi:hover { transform: translateY(-2px); border-color: rgba(0,184,160,0.3); }
+  .kpi::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+  }
+  .kpi-val { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--white); }
+  .kpi-label { font-size: 12px; color: var(--slate); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .kpi-delta { font-size: 12px; color: var(--green); margin-top: 8px; font-weight: 500; }
+
+  .section { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; }
+  .section-title span { color: var(--teal); font-size: 12px; font-family: 'DM Mono', monospace; vertical-align: middle; margin-left: 10px; background: rgba(0,184,160,0.1); padding: 3px 10px; border-radius: 20px; font-weight: 400; }
+
+  /* ── CHARITY GRID ── */
+  .charity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .charity-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px; cursor: pointer; transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .charity-card:hover { border-color: rgba(0,184,160,0.4); background: rgba(255,255,255,0.06); transform: translateY(-3px); }
+  .charity-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent); opacity: 0; transition: opacity 0.2s;
+  }
+  .charity-card:hover::after { opacity: 1; }
+
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .card-tier { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .tier-badge {
+    padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .tier1 { background: rgba(0,184,160,0.15); color: var(--tier1); border: 1px solid rgba(0,184,160,0.3); }
+  .tier2 { background: rgba(244,167,41,0.15); color: var(--tier2); border: 1px solid rgba(244,167,41,0.3); }
+  .tier3 { background: rgba(124,92,191,0.15); color: var(--tier3); border: 1px solid rgba(124,92,191,0.3); }
+
+  .card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+  .card-focus { font-size: 12px; color: var(--slate); margin-bottom: 12px; }
+  .card-location { font-size: 11px; color: var(--teal); font-family: 'DM Mono', monospace; margin-bottom: 14px; }
+
+  .score-bar-wrap { margin-bottom: 10px; }
+  .score-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); margin-bottom: 4px; }
+  .score-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+  .fill-teal { background: linear-gradient(90deg, var(--teal), var(--teal2)); }
+  .fill-gold { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+  .fill-purple { background: linear-gradient(90deg, #7c5cbf, #a78bfa); }
+
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .card-stat { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 8px 10px; }
+  .stat-val { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: var(--white); }
+  .stat-key { font-size: 10px; color: var(--slate); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── TIER DISTRIBUTION ── */
+  .tier-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 2rem; }
+  .tier-card {
+    border-radius: 14px; padding: 20px; border: 1px solid;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .tier-card.t1 { background: rgba(0,184,160,0.06); border-color: rgba(0,184,160,0.2); }
+  .tier-card.t2 { background: rgba(244,167,41,0.06); border-color: rgba(244,167,41,0.2); }
+  .tier-card.t3 { background: rgba(124,92,191,0.06); border-color: rgba(124,92,191,0.2); }
+  .tier-card-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .t1 .tier-card-title { color: var(--tier1); }
+  .t2 .tier-card-title { color: var(--tier2); }
+  .t3 .tier-card-title { color: var(--tier3); }
+  .tier-card-amount { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; }
+  .tier-card-desc { font-size: 12px; color: var(--slate); line-height: 1.5; }
+  .tier-card-orgs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .org-chip { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--light); }
+
+  /* ── LAYER 1: CHARITY PROFILE ── */
+  .profile-back {
+    max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 0;
+    display: flex; align-items: center; gap: 10px; cursor: pointer;
+    color: var(--slate); font-size: 13px; transition: color 0.2s;
+  }
+  .profile-back:hover { color: var(--teal); }
+  .profile-hero {
+    background: linear-gradient(160deg, #0a1628 0%, #0a2220 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2rem 1.5rem;
+  }
+  .profile-hero-inner { max-width: 1400px; margin: 0 auto; }
+  .profile-top { display: flex; align-items: center; gap: 20px; margin-bottom: 1.5rem; }
+  .profile-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+  .profile-meta { flex: 1; }
+  .profile-name { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
+  .profile-tagline { color: var(--slate); font-size: 14px; margin-top: 4px; }
+  .profile-badges { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .badge { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+  .badge-teal { background: rgba(0,184,160,0.12); color: var(--teal); border: 1px solid rgba(0,184,160,0.2); }
+  .badge-gold { background: rgba(244,167,41,0.12); color: var(--gold); border: 1px solid rgba(244,167,41,0.2); }
+  .badge-slate { background: rgba(136,153,170,0.12); color: var(--slate); border: 1px solid rgba(136,153,170,0.2); }
+
+  .profile-score-big {
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(0,184,160,0.06); border: 1px solid rgba(0,184,160,0.15);
+    border-radius: 14px; padding: 16px 24px;
+  }
+  .score-circle {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: conic-gradient(var(--teal) var(--pct), rgba(255,255,255,0.08) 0deg);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; flex-shrink: 0;
+  }
+  .score-circle-inner {
+    width: 54px; height: 54px; background: var(--navy); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500;
+  }
+  .score-info { flex: 1; }
+  .score-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .score-desc { font-size: 12px; color: var(--slate); line-height: 1.5; }
+
+  /* 9-dimension radar section */
+  .dimensions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .dimensions-grid .people-section { grid-column: 1 / -1; }
+  .dim-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; transition: all 0.2s;
+  }
+  .dim-card:hover { border-color: rgba(0,184,160,0.3); }
+  .dim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .dim-name { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--light); }
+  .dim-score-val { font-family: 'DM Mono', monospace; font-size: 14px; }
+  .dim-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+  .dim-bar-fill { height: 100%; border-radius: 2px; }
+  .dim-detail { font-size: 11px; color: var(--slate); line-height: 1.6; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+  .tab {
+    padding: 10px 20px; font-size: 13px; font-weight: 500; cursor: pointer;
+    border: none; background: transparent; color: var(--slate);
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .tab:hover { color: var(--white); }
+  .tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.2s ease; }
+
+  /* ── LAYER 3: DONOR VIEW ── */
+  .donor-hero {
+    background: linear-gradient(160deg, #0a1628, #0a2510);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem;
+  }
+  .donor-hero-inner { max-width: 1400px; margin: 0 auto; }
+  .donor-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+  .donor-sub { color: var(--slate); font-size: 14px; max-width: 600px; }
+
+  .donor-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 1.5rem; }
+  .donor-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px;
+  }
+  .donor-card-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--slate); margin-bottom: 14px; }
+
+  .impact-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .impact-row:last-child { border-bottom: none; }
+  .impact-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(0,184,160,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .impact-text { flex: 1; }
+  .impact-label { font-size: 13px; font-weight: 500; }
+  .impact-sub { font-size: 11px; color: var(--slate); margin-top: 2px; }
+  .impact-val { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--teal); font-weight: 500; }
+
+  .give-btn {
+    width: 100%; padding: 14px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--teal), #009e8a);
+    border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600; color: var(--navy);
+    margin-top: 16px; transition: all 0.2s; letter-spacing: 0.02em;
+  }
+  .give-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,184,160,0.3); }
+
+  .trust-signals { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .trust-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--slate); }
+  .trust-check { color: var(--teal); font-size: 14px; }
+
+  /* ── CHARTS ── */
+  .mini-chart { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin-top: 12px; }
+  .bar-c { flex: 1; border-radius: 4px 4px 0 0; transition: height 0.5s ease; cursor: pointer; }
+  .bar-c:hover { opacity: 0.8; }
+
+  .donut-wrap { position: relative; width: 100px; height: 100px; margin: 0 auto; }
+
+  /* ── SECTOR FILTER ── */
+  .sector-item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; text-align: center; transition: all 0.22s;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .sector-item::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,184,160,0.08), transparent);
+    opacity: 0; transition: opacity 0.22s;
+  }
+  .sector-item:hover { border-color: rgba(0,184,160,0.45); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,184,160,0.12); }
+  .sector-item:hover::before { opacity: 1; }
+  .sector-item.active-sector { border-color: var(--teal); background: rgba(0,184,160,0.08); box-shadow: 0 0 0 2px rgba(0,184,160,0.2); }
+  .sector-item.active-sector::before { opacity: 1; }
+  .sector-item .sector-arrow { font-size: 10px; color: var(--teal); margin-top: 8px; opacity: 0; transition: opacity 0.2s; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .sector-item:hover .sector-arrow { opacity: 1; }
+
+  .filter-banner {
+    display: none; align-items: center; justify-content: space-between;
+    background: rgba(0,184,160,0.08); border: 1px solid rgba(0,184,160,0.25);
+    border-radius: 10px; padding: 10px 16px; margin-bottom: 1.2rem;
+    animation: fadeIn 0.2s ease;
+  }
+  .filter-banner.visible { display: flex; }
+  .filter-banner-left { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .filter-tag { background: rgba(0,184,160,0.15); color: var(--teal); padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .filter-clear { background: none; border: 1px solid var(--border); color: var(--slate); padding: 4px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .filter-clear:hover { border-color: var(--teal); color: var(--teal); }
+
+  .charity-card.dimmed { opacity: 0.28; transform: scale(0.98); filter: grayscale(0.4); }
+  .charity-card.highlighted { border-color: rgba(0,184,160,0.5) !important; }
+
+
+  /* ── SECTOR MAP ── */
+  .sector-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sector-icon { font-size: 28px; margin-bottom: 8px; }
+  .sector-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .sector-count { font-size: 11px; color: var(--slate); }
+  .sector-bar { height: 3px; border-radius: 2px; background: var(--teal); margin-top: 10px; }
+
+
+  .flow-diagram {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; text-align: center;
+  }
+  .flow-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .flow-box {
+    border-radius: 12px; padding: 12px 16px; min-width: 140px; text-align: center;
+  }
+  .flow-box.source { background: rgba(244,167,41,0.1); border: 1px solid rgba(244,167,41,0.25); }
+  .flow-box.asit { background: rgba(0,184,160,0.1); border: 2px solid var(--teal); }
+  .flow-box.dest { background: rgba(124,92,191,0.1); border: 1px solid rgba(124,92,191,0.25); }
+  .flow-arrow { font-size: 20px; color: var(--slate); }
+  .flow-label { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .flow-sub { font-size: 10px; color: var(--slate); }
+  .flow-amount { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--teal); font-weight: 500; margin-top: 4px; }
+
+  /* ── PROFILE SECTION HEADERS ── */
+  .profile-section-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--white); margin: 2rem 0 1rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .profile-section-header::before {
+    content: ''; width: 3px; height: 18px;
+    background: linear-gradient(180deg, var(--teal), var(--gold));
+    border-radius: 2px; flex-shrink: 0;
+  }
+
+  /* ── KEY PEOPLE ── */
+  .people-section { margin-bottom: 1.5rem; }
+  .people-title {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--slate); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .people-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .people-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .person-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    transition: all 0.2s; min-width: 200px; flex: 1;
+  }
+  .person-card:hover { border-color: rgba(0,184,160,0.25); background: rgba(0,184,160,0.04); }
+  .person-avatar {
+    width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; font-family: 'Playfair Display', serif;
+  }
+  .person-info { flex: 1; min-width: 0; }
+  .person-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .person-role { font-size: 11px; color: var(--teal); margin-top: 1px; }
+  .person-bg { font-size: 10px; color: var(--slate); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .charity-grid { grid-template-columns: 1fr 1fr; }
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .dimensions-grid { grid-template-columns: 1fr 1fr; }
+    .sector-grid { grid-template-columns: repeat(2, 1fr); }
+    .donor-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .charity-grid { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .dimensions-grid { grid-template-columns: 1fr; }
+    .tier-summary { grid-template-columns: 1fr; }
+    .master-title { font-size: 1.6rem; }
+    .profile-name { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">A</div>
+      <div class="logo-text">
+        <span class="logo-title">ASIT</span>
+        <span class="logo-sub">Australian Social Investment Trust</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" onclick="showView('master')">ASIT Overview</button>
+      <button class="nav-btn" onclick="showView('charities')">Charities</button>
+      <button class="nav-btn" onclick="showView('funding')">ASIT Framework</button>
+    </nav>
+    <div class="header-badge">
+      <div class="dot"></div>
+      <span>6 Charities Profiled • NSW Pilot</span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════
+     VIEW 1: ASIT MASTER DASHBOARD (Layer 4)
+════════════════════════════════════════════ -->
+<div id="view-master" class="view active">
+
+  <div class="master-hero">
+    <div class="master-hero-inner">
+      <div class="master-title">Australian Social Investment Trust<br><span>Intelligence Platform</span></div>
+      <p class="master-sub">Connecting grassroots charities with government, philanthropy and tech giving through data-driven profiles and transparent scoring.</p>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-val">6</div>
+      <div class="kpi-label">Charities Profiled</div>
+      <div class="kpi-delta">▲ NSW Pilot Cohort</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">38,000+</div>
+      <div class="kpi-label">Young People Reached</div>
+      <div class="kpi-delta">▲ Across all programs</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">$8.2M</div>
+      <div class="kpi-label">Combined Revenue</div>
+      <div class="kpi-delta">▲ FY2023–24 est.</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">$70M+</div>
+      <div class="kpi-label">Total Social Value</div>
+      <div class="kpi-delta">▲ Across ASIT portfolio</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">7.1</div>
+      <div class="kpi-label">Avg ASIT Score</div>
+      <div class="kpi-delta">▲ Out of 10</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">$7.4</div>
+      <div class="kpi-label">Avg Return per $1</div>
+      <div class="kpi-delta">▲ Across Tier 2–3 charities</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Funding Tier Distribution <span>6 charities assessed</span></div>
+    <div class="tier-summary">
+      <div class="tier-card t1">
+        <div class="tier-card-title">Tier 1 — Foundation Grants</div>
+        <div class="tier-card-amount" style="color:var(--tier1)">$10K – $50K</div>
+        <div class="tier-card-desc">Early-stage grassroots charities with strong community connection but developing data systems. Capacity building embedded in grant.</div>
+        <div class="tier-card-orgs">
+          <span class="org-chip">IBFF</span>
+        </div>
+      </div>
+      <div class="tier-card t2">
+        <div class="tier-card-title">Tier 2 — Growth Grants</div>
+        <div class="tier-card-amount" style="color:var(--tier2)">$50K – $200K</div>
+        <div class="tier-card-desc">Established organisations with track record and informal outcomes tracking. Ready for program-level investment and scale.</div>
+        <div class="tier-card-orgs">
+          <span class="org-chip">Streetwork</span>
+          <span class="org-chip">Batyr</span>
+          <span class="org-chip">Little Dreamers</span>
+          <span class="org-chip">Beacon Foundation</span>
+        </div>
+      </div>
+      <div class="tier-card t3">
+        <div class="tier-card-title">Tier 3 — Impact Investment</div>
+        <div class="tier-card-amount" style="color:var(--tier3)">$200K+</div>
+        <div class="tier-card-desc">Mature organisations with rigorous evaluation, Theory of Change, and formal outcomes measurement. Eligible for outcome-linked payments.</div>
+        <div class="tier-card-orgs">
+          <span class="org-chip">Raise Foundation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Sector Coverage <span>Click a sector to filter charities</span></div>
+    <div class="sector-grid">
+      <div class="sector-item" data-sector="Mental Health" onclick="filterBySector(this)">
+        <div class="sector-icon">🧠</div>
+        <div class="sector-name">Mental Health</div>
+        <div class="sector-count">2 organisations</div>
+        <div class="sector-bar" style="width:66%"></div>
+        <div class="sector-arrow">View charities →</div>
+      </div>
+      <div class="sector-item" data-sector="Youth Mentoring" onclick="filterBySector(this)">
+        <div class="sector-icon">🤝</div>
+        <div class="sector-name">Youth Mentoring</div>
+        <div class="sector-count">3 organisations</div>
+        <div class="sector-bar" style="width:100%"></div>
+        <div class="sector-arrow">View charities →</div>
+      </div>
+      <div class="sector-item" data-sector="Young Carers" onclick="filterBySector(this)">
+        <div class="sector-icon">👨‍👩‍👧</div>
+        <div class="sector-name">Young Carers</div>
+        <div class="sector-count">1 organisation</div>
+        <div class="sector-bar" style="width:33%"></div>
+        <div class="sector-arrow">View charities →</div>
+      </div>
+      <div class="sector-item" data-sector="Career Education" onclick="filterBySector(this)">
+        <div class="sector-icon">🎓</div>
+        <div class="sector-name">Career Education</div>
+        <div class="sector-count">1 organisation</div>
+        <div class="sector-bar" style="width:33%"></div>
+        <div class="sector-arrow">View charities →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">ASIT Framework — Charity Scorecard <span id="grid-label">Click any charity to view full profile</span></div>
+    <div class="filter-banner" id="filter-banner">
+      <div class="filter-banner-left">
+        <span>Filtering by sector:</span>
+        <span class="filter-tag" id="filter-tag-text"></span>
+        <span id="filter-match-count" style="font-size:12px;color:var(--slate)"></span>
+      </div>
+      <button class="filter-clear" onclick="clearSectorFilter()">✕ Clear filter</button>
+    </div>
+    <div class="charity-grid" id="master-grid"></div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     VIEW 2: CHARITY BROWSER (Layer 1+2)
+════════════════════════════════════════════ -->
+<div id="view-charities" class="view">
+  <div id="charity-list-view">
+    <div class="section">
+      <div class="section-title" style="margin-top:1rem">Charity Profiles <span>9-Dimension Assessment</span></div>
+      <div class="charity-grid" id="browse-grid"></div>
+    </div>
+  </div>
+
+  <!-- INDIVIDUAL PROFILE VIEW — single scroll page -->
+  <div id="charity-profile-view" style="display:none">
+    <div class="profile-back" onclick="showCharityList()">
+      ← Back to all charities
+    </div>
+    <div class="profile-hero">
+      <div class="profile-hero-inner">
+        <div class="profile-top">
+          <div class="profile-icon" id="p-icon"></div>
+          <div class="profile-meta">
+            <div class="profile-name" id="p-name"></div>
+            <div class="profile-tagline" id="p-tagline"></div>
+            <div class="profile-badges" id="p-badges"></div>
+          </div>
+          <div class="profile-score-big">
+            <div class="score-circle" id="p-circle">
+              <div class="score-circle-inner" id="p-score"></div>
+            </div>
+            <div class="score-info">
+              <div class="score-title">ASIT Score</div>
+              <div class="score-desc" id="p-tier-desc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Single scrollable content -->
+    <div id="p-scroll-content"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     VIEW 3: ASIT FRAMEWORK
+════════════════════════════════════════════ -->
+<div id="view-funding" class="view">
+
+  <!-- Section 1: Funding Architecture -->
+  <div class="section" style="margin-top:1.5rem">
+    <div class="section-title">ASIT Funding Architecture <span>How capital flows through the trust</span></div>
+    <div class="flow-diagram">
+      <div class="flow-row">
+        <div class="flow-box source">
+          <div class="flow-label">🏛️ Government</div>
+          <div class="flow-sub">NSW DCJ, Federal Grants</div>
+          <div class="flow-amount">$2–5M+</div>
+        </div>
+        <div class="flow-box source">
+          <div class="flow-label">💼 Philanthropy</div>
+          <div class="flow-sub">Foundations & Trusts</div>
+          <div class="flow-amount">$500K–2M</div>
+        </div>
+        <div class="flow-box source">
+          <div class="flow-label">💻 Tech Giving</div>
+          <div class="flow-sub">Atlassian, Canva, Pledge 1%</div>
+          <div class="flow-amount">$250K–1M</div>
+        </div>
+        <div class="flow-box source">
+          <div class="flow-label">🏢 Corporate</div>
+          <div class="flow-sub">Workplace giving programs</div>
+          <div class="flow-amount">$100K–500K</div>
+        </div>
+      </div>
+      <div style="text-align:center;padding:16px;font-size:24px;color:var(--slate)">↓</div>
+      <div class="flow-row">
+        <div class="flow-box asit" style="min-width:300px">
+          <div class="flow-label" style="color:var(--teal);font-size:15px;font-weight:700">🔷 ASIT</div>
+          <div class="flow-sub">Australian Social Investment Trust</div>
+          <div class="flow-sub" style="margin-top:8px">Community Charity DGR1 · Compliance Layer · ASIT Score™ · Intelligence Hub</div>
+          <div class="flow-amount" style="margin-top:8px;color:var(--teal)">$70M+ Social Value Generated</div>
+        </div>
+      </div>
+      <div style="text-align:center;padding:16px;font-size:24px;color:var(--slate)">↓ Allocated by ASIT Score</div>
+      <div class="flow-row">
+        <div class="flow-box dest">
+          <div class="flow-label">🌱 Tier 1</div>
+          <div class="flow-sub">Foundation Grants</div>
+          <div class="flow-amount" style="color:#7c5cbf">$10K–$50K</div>
+          <div class="flow-sub" style="margin-top:6px">Capacity-building embedded</div>
+        </div>
+        <div class="flow-box dest">
+          <div class="flow-label">📈 Tier 2</div>
+          <div class="flow-sub">Growth Grants</div>
+          <div class="flow-amount" style="color:var(--gold)">$50K–$200K</div>
+          <div class="flow-sub" style="margin-top:6px">Program-level investment</div>
+        </div>
+        <div class="flow-box dest">
+          <div class="flow-label">🚀 Tier 3</div>
+          <div class="flow-sub">Impact Investment</div>
+          <div class="flow-amount" style="color:var(--teal)">$200K+</div>
+          <div class="flow-sub" style="margin-top:6px">Outcome-linked payments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: ASIT Scoring Framework -->
+  <div class="section">
+    <div class="section-title">ASIT Scoring Framework <span>9 dimensions · 0–10 scale · contextual benchmarking</span></div>
+    <div class="dimensions-grid">
+      <div class="dim-card">
+        <div class="dim-header"><div class="dim-name">Mission & Social Need</div><div class="dim-score-val" style="color:var(--teal)">30%</div></div>
+        <div class="dim-detail">Clarity of purpose, alignment with identified community need, evidence of demand. Critical for Tier 1 assessment.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-header"><div class="dim-name">Community Connection</div><div class="dim-score-val" style="color:var(--teal)">25%</div></div>
+        <div class="dim-detail">Cultural competence, grassroots embeddedness, trust from beneficiaries, peer references from community leaders.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-header"><div class="dim-name">Governance & Compliance</div><div class="dim-score-val" style="color:var(--teal)">20%</div></div>
+        <div class="dim-detail">ACNC registration, board structure, financial reporting quality, DGR status, risk management policies.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-header"><div class="dim-name">Program Design</div><div class="dim-score-val" style="color:var(--gold)">15%</div></div>
+        <div class="dim-detail">Theory of Change, evidence base, program logic, intervention maturity, adaptation and learning cycles.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-header"><div class="dim-name">Financial Sustainability</div><div class="dim-score-val" style="color:var(--gold)">15%</div></div>
+        <div class="dim-detail">Revenue diversification, cost-per-beneficiary, surplus/deficit trends, unrestricted funding ratio.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-header"><div class="dim-name">Impact Measurement</div><div class="dim-score-val" style="color:var(--gold)">5–20%</div></div>
+        <div class="dim-detail">Scales with tier: proxy indicators acceptable for Tier 1. Formal SROI / third-party evaluation required for Tier 3.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Impact Delivery — Real evidence from ASIT charities -->
+  <div class="section">
+    <div class="section-title">Impact Delivery in Action <span>Real outcomes from ASIT portfolio charities</span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="donor-card" style="background:rgba(0,184,160,0.04);border:1px solid rgba(0,184,160,0.2);border-radius:16px;padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🤝</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--teal);margin-bottom:4px">Raise Foundation</div>
+        <div style="font-size:12px;color:var(--slate);margin-bottom:14px">Tier 3 · Youth Mentoring · NSW + National</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Young people supported</span><span style="color:var(--white);font-weight:500">10,000+/yr</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Improved ≥1 outcome</span><span style="color:var(--teal);font-weight:600">85%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Social return per $1</span><span style="color:var(--gold);font-weight:600">$4.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="donor-card" style="background:rgba(244,167,41,0.04);border:1px solid rgba(244,167,41,0.2);border-radius:16px;padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🏙️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--gold);margin-bottom:4px">Streetwork</div>
+        <div style="font-size:12px;color:var(--slate);margin-bottom:14px">Tier 2 · Youth at Risk · Northern Sydney</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Young people annually</span><span style="color:var(--white);font-weight:500">350+/yr</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Wellbeing factors tracked</span><span style="color:var(--teal);font-weight:600">54</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Taxpayer saving per $1</span><span style="color:var(--gold);font-weight:600">$16 (PwC)</span>
+          </div>
+        </div>
+      </div>
+      <div class="donor-card" style="background:rgba(124,92,191,0.04);border:1px solid rgba(124,92,191,0.2);border-radius:16px;padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🧠</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#a78bfa;margin-bottom:4px">Batyr</div>
+        <div style="font-size:12px;color:var(--slate);margin-bottom:14px">Tier 2 · Mental Health · NSW + National</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Young people reached</span><span style="color:var(--white);font-weight:500">50,000+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Lived exp. speakers</span><span style="color:var(--teal);font-weight:600">200+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Cost per person reached</span><span style="color:var(--gold);font-weight:600">$60–$80</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
+      <div class="donor-card" style="background:rgba(244,167,41,0.04);border:1px solid rgba(244,167,41,0.2);border-radius:16px;padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🎓</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--gold);margin-bottom:4px">Beacon Foundation</div>
+        <div style="font-size:12px;color:var(--slate);margin-bottom:14px">Tier 2 · Career Education · TAS + National</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Schools nationwide</span><span style="color:var(--white);font-weight:500">104</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Understand employer needs</span><span style="color:var(--teal);font-weight:600">94%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Cost per beneficiary</span><span style="color:var(--gold);font-weight:600">$400</span>
+          </div>
+        </div>
+      </div>
+      <div class="donor-card" style="background:rgba(34,197,94,0.04);border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">💛</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#4ade80;margin-bottom:4px">Little Dreamers</div>
+        <div style="font-size:12px;color:var(--slate);margin-bottom:14px">Tier 2 · Young Carers · NSW + National</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Service engagements/yr</span><span style="color:var(--white);font-weight:500">10,000+</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Active volunteers</span><span style="color:var(--teal);font-weight:600">449</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Cost per beneficiary</span><span style="color:var(--gold);font-weight:600">$200</span>
+          </div>
+        </div>
+      </div>
+      <div class="donor-card" style="background:rgba(255,107,107,0.04);border:1px solid rgba(255,107,107,0.2);border-radius:16px;padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🌏</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#f87171;margin-bottom:4px">IBFF</div>
+        <div style="font-size:12px;color:var(--slate);margin-bottom:14px">Tier 1 · Community Mentoring · QLD (8 regions)</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Programs per year</span><span style="color:var(--white);font-weight:500">100</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Revenue growth (3yr)</span><span style="color:var(--teal);font-weight:600">+55%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px">
+            <span style="color:var(--slate)">Social value</span><span style="color:var(--slate);font-weight:500">Developing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Why ASIT — for each audience -->
+  <div class="section">
+    <div class="section-title">Why ASIT <span>The case for each stakeholder</span></div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
+
+      <div style="background:rgba(0,184,160,0.05);border:1px solid rgba(0,184,160,0.2);border-radius:16px;padding:22px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,184,160,0.15);display:flex;align-items:center;justify-content:center;font-size:22px">🏛️</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700">For Government</div>
+            <div style="font-size:11px;color:var(--slate)">NSW & Federal funding bodies</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--teal);font-size:16px;flex-shrink:0">✓</span><span><strong>One compliance interface</strong> — ASIT holds DGR1 status and absorbs government reporting obligations, removing the burden of vetting dozens of small charities individually.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--teal);font-size:16px;flex-shrink:0">✓</span><span><strong>Proportionality principle</strong> — ASIT's tiered approach aligns with Commonwealth Grants Rules 2024, ensuring grants match organisational maturity.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--teal);font-size:16px;flex-shrink:0">✓</span><span><strong>Verified social value</strong> — ASIT Score™ provides auditable evidence of impact, with social returns up to $16:$1 already demonstrated in the portfolio.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--teal);font-size:16px;flex-shrink:0">✓</span><span><strong>Outcome-linked payments</strong> — Tier 3 structure enables Social Impact Bond–style payments tied to measurable outcomes.</span></div>
+        </div>
+      </div>
+
+      <div style="background:rgba(244,167,41,0.05);border:1px solid rgba(244,167,41,0.2);border-radius:16px;padding:22px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(244,167,41,0.15);display:flex;align-items:center;justify-content:center;font-size:22px">💼</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700">For Major Philanthropy</div>
+            <div style="font-size:11px;color:var(--slate)">Foundations, trusts & family offices</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✓</span><span><strong>Discovery engine</strong> — ASIT surfaces high-impact grassroots organisations that would otherwise be invisible to foundation grantmakers.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✓</span><span><strong>Trust-based giving</strong> — Tiered funding with capacity-building components mirrors the Ford Foundation BUILD model, proven to deliver better long-term outcomes.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✓</span><span><strong>Portfolio intelligence</strong> — ASIT aggregates outcomes across all funded charities, giving foundations a portfolio view they cannot get from individual grants.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✓</span><span><strong>Pooled grantmaking</strong> — Multiple foundations can co-invest through ASIT, reducing administrative duplication and amplifying collective impact.</span></div>
+        </div>
+      </div>
+
+      <div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.2);border-radius:16px;padding:22px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;font-size:22px">💻</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700">For Tech Giving</div>
+            <div style="font-size:11px;color:var(--slate)">Tech founders, Atlassian, Canva, Pledge 1%</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#60a5fa;font-size:16px;flex-shrink:0">✓</span><span><strong>Data-native platform</strong> — ASIT speaks the language of tech philanthropists: KPIs, social return on investment, portfolio analytics, and real-time impact dashboards.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#60a5fa;font-size:16px;flex-shrink:0">✓</span><span><strong>$25B opportunity</strong> — CSI research shows Australian tech wealth is shifting from 1% to 21% of top-50 giving. ASIT is the infrastructure to channel this efficiently.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#60a5fa;font-size:16px;flex-shrink:0">✓</span><span><strong>Venture-style diligence</strong> — ASIT Score™ mirrors startup due diligence: founders, traction, evidence base, financials, and growth trajectory — all in one profile.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#60a5fa;font-size:16px;flex-shrink:0">✓</span><span><strong>Pledge 1% compatible</strong> — ASIT integrates with workplace giving platforms, allowing tech companies to direct their Pledge 1% commitments to verified grassroots portfolios.</span></div>
+        </div>
+      </div>
+
+      <div style="background:rgba(124,92,191,0.05);border:1px solid rgba(124,92,191,0.2);border-radius:16px;padding:22px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(124,92,191,0.15);display:flex;align-items:center;justify-content:center;font-size:22px">🌱</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700">For Grassroots Charities</div>
+            <div style="font-size:11px;color:var(--slate)">Small NFPs without the resources to compete alone</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#a78bfa;font-size:16px;flex-shrink:0">✓</span><span><strong>Visibility without burden</strong> — ASIT builds your profile from public data. No new reporting, no new systems. Your work speaks for itself.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#a78bfa;font-size:16px;flex-shrink:0">✓</span><span><strong>Pathway to larger funding</strong> — ASIT's tiered model creates a credible pathway from $10K to $200K+ grants as organisations mature — no cliff edges.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#a78bfa;font-size:16px;flex-shrink:0">✓</span><span><strong>Capacity building embedded</strong> — Tier 1 grants include support to build the governance and measurement systems needed to progress — investment, not just money.</span></div>
+          <div style="display:flex;gap:10px;font-size:13px"><span style="color:#a78bfa;font-size:16px;flex-shrink:0">✓</span><span><strong>Collaborative, not competitive</strong> — ASIT ends the race for the same grant dollar. Charities are scored on their own merit, not pitted against each other.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 5: ASIT Compliance & Framework Alignment -->
+  <div class="section">
+    <div class="section-title">ASIT Compliance & Framework Alignment <span>What makes ASIT credible to government, philanthropy & corporates</span></div>
+    <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:12px">
+
+      <!-- Pillar 1 -->
+      <div style="display:grid;grid-template-columns:64px 1fr 1fr;gap:20px;align-items:start;background:rgba(0,184,160,0.04);border:1px solid rgba(0,184,160,0.18);border-radius:16px;padding:22px">
+        <div style="width:56px;height:56px;border-radius:14px;background:rgba(0,184,160,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🏛️</div>
+        <div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);font-weight:600;margin-bottom:4px">Commonwealth Framework</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:6px">Commonwealth Grants Rules & Principles 2024</div>
+          <div style="font-size:12px;color:var(--slate);line-height:1.7">ASIT's tiered scoring directly embeds the <strong style="color:var(--light)">proportionality principle</strong> — assessment burden matches organisational maturity. Simplified Tier 1 criteria for early-stage charities mirrors the CGRGs directive that officials must not overburden grant applicants.</div>
+        </div>
+        <div style="background:rgba(0,184,160,0.06);border-radius:10px;padding:14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:6px">What this means for funders</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">Government funders can direct grants through ASIT with confidence that distribution methodology is fully aligned with Commonwealth grant administration law — reducing legal and compliance risk.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div style="display:grid;grid-template-columns:64px 1fr 1fr;gap:20px;align-items:start;background:rgba(244,167,41,0.04);border:1px solid rgba(244,167,41,0.18);border-radius:16px;padding:22px">
+        <div style="width:56px;height:56px;border-radius:14px;background:rgba(244,167,41,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">📋</div>
+        <div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:4px">Charity Regulator</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:6px">ACNC Governance Standards</div>
+          <div style="font-size:12px;color:var(--slate);line-height:1.7">All ASIT-profiled charities are assessed against the five <strong style="color:var(--light)">ACNC Governance Standards</strong> — board accountability, member management, conflicts of interest, financial oversight, and program suitability. ASIT's Governance & Accountability dimension maps directly to these standards.</div>
+        </div>
+        <div style="background:rgba(244,167,41,0.06);border-radius:10px;padding:14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px">What this means for funders</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">Every charity in the ASIT portfolio has been independently verified against Australia's national charity regulator standards — giving donors immediate confidence without needing to conduct their own due diligence.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div style="display:grid;grid-template-columns:64px 1fr 1fr;gap:20px;align-items:start;background:rgba(124,92,191,0.04);border:1px solid rgba(124,92,191,0.18);border-radius:16px;padding:22px">
+        <div style="width:56px;height:56px;border-radius:14px;background:rgba(124,92,191,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">⚖️</div>
+        <div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#a78bfa;font-weight:600;margin-bottom:4px">Legal Structure · Treasury 2024</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:6px">Community Charity DGR Framework</div>
+          <div style="font-size:12px;color:var(--slate);line-height:1.7">ASIT's legal structure is purpose-built around the new <strong style="color:var(--light)">Community Charity DGR category</strong> established by the Treasury Laws Amendment Act 2024 — the only vehicle in Australia that allows both grantmaking to non-DGR organisations <em>and</em> direct program delivery under a single entity.</div>
+        </div>
+        <div style="background:rgba(124,92,191,0.06);border-radius:10px;padding:14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#a78bfa;margin-bottom:6px">What this means for funders</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">Donations to ASIT are fully tax-deductible. ASIT can pass funds to grassroots charities regardless of their DGR status — removing the single biggest structural barrier that has historically blocked funding from reaching the organisations that need it most.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 4 -->
+      <div style="display:grid;grid-template-columns:64px 1fr 1fr;gap:20px;align-items:start;background:rgba(59,130,246,0.04);border:1px solid rgba(59,130,246,0.18);border-radius:16px;padding:22px">
+        <div style="width:56px;height:56px;border-radius:14px;background:rgba(59,130,246,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">📐</div>
+        <div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#60a5fa;font-weight:600;margin-bottom:4px">National Measurement Standard</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:6px">Standards Australia SA HB 204:2022</div>
+          <div style="font-size:12px;color:var(--slate);line-height:1.7">Australia's first national social impact measurement standard. ASIT's 9-dimension framework is aligned to its <strong style="color:var(--light)">eight core principles</strong> — including measurement of lived experience, comparability across organisations, transparency of methodology, and stakeholder engagement in assessment design.</div>
+        </div>
+        <div style="background:rgba(59,130,246,0.06);border-radius:10px;padding:14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#60a5fa;margin-bottom:6px">What this means for funders</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">ASIT's impact measurement methodology is not proprietary or arbitrary — it follows the same national standard used by government agencies, academic institutions and major foundations across Australia, making ASIT scores credible and defensible.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 5 -->
+      <div style="display:grid;grid-template-columns:64px 1fr 1fr;gap:20px;align-items:start;background:rgba(34,197,94,0.04);border:1px solid rgba(34,197,94,0.18);border-radius:16px;padding:22px">
+        <div style="width:56px;height:56px;border-radius:14px;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">🎯</div>
+        <div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#4ade80;font-weight:600;margin-bottom:4px">NSW Government · Social Investment</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:6px">NSW Office of Social Impact Investment (OSII)</div>
+          <div style="font-size:12px;color:var(--slate);line-height:1.7">ASIT's Tier 3 assessment criteria directly mirror NSW OSII's <strong style="color:var(--light)">Social Impact Bond readiness requirements</strong> — evidence-based program design, organisational data capacity, measurable payable outcomes, and counterfactual methodology. Since 2013 NSW has facilitated 14 social impact investments supporting 15,000+ people.</div>
+        </div>
+        <div style="background:rgba(34,197,94,0.06);border-radius:10px;padding:14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:6px">What this means for funders</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">ASIT Tier 3 charities are pre-qualified for NSW Government outcome-linked payment structures — opening a pathway to Social Impact Bond investment and government performance contracts that would be inaccessible to grassroots organisations operating independently.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── DATA ──
+// Avatar colour palette — cycles through these per person
+const avatarColors = [
+  ['#00b8a0','#003d36'],['#f4a729','#4a3200'],['#7c5cbf','#2a1f45'],
+  ['#ff6b6b','#4a1515'],['#22c55e','#0a3a1a'],['#3b82f6','#0f2545'],
+];
+function avatarStyle(idx) {
+  const [bg,fg] = avatarColors[idx % avatarColors.length];
+  return `background:${bg}20;color:${bg};border:1px solid ${bg}40`;
+}
+function initials(name) {
+  return name.split(' ').filter(Boolean).slice(0,2).map(n=>n[0]).join('');
+}
+
+const charities = [
+  {
+    id: 'raise',
+    name: 'Raise Foundation',
+    sectors: ['Youth Mentoring'],
+    socialValue: '$40M+',
+    socialReturn: '$4 per $1',
+    emoji: '🤝',
+    color: '#00b8a0',
+    tagline: 'Australia\'s largest youth mentoring organisation — transforming young lives',
+    focus: 'Youth Mentoring',
+    location: 'NSW · National',
+    established: '2006',
+    tier: 3,
+    asitScore: 8.9,
+    revenue: '$5M+',
+    reach: '10,000+',
+    volunteers: '2,000+',
+    programs: ['School Mentoring (10-week)', 'School Mentoring (20-week)', 'Group Mentoring'],
+    dimensions: [
+      { name: 'Governance & Accountability', score: 9.2, detail: 'ACNC registered, full audited financials, experienced board, published annual evaluation report. DGR1 status.', color: '#00b8a0' },
+      { name: 'Impact & Results', score: 9.5, detail: '85% mentees improved in ≥1 outcome area. Statistically significant growth across Help Seeking, Hope, Resilience, School Engagement. Independent RCT via propensity score matching.', color: '#00b8a0' },
+      { name: 'Financial Sustainability', score: 8.0, detail: 'Diversified revenue: trusts/foundations ($900K+), corporate partnerships (Google.org, Macquarie), event fundraising ($220K+). 3% revenue growth YoY.', color: '#00b8a0' },
+      { name: 'Geographic Reach', score: 8.5, detail: 'Operates in NSW, VIC, QLD, SA, WA and expanding to Tasmania. Expanding to regional areas with 5-year funding secured.', color: '#00b8a0' },
+      { name: 'Program Maturity', score: 9.0, detail: '18+ years operating. Multiple peer-reviewed evaluations. Evidence-based Theory of Change. Programs continuously refined through rigorous feedback loops.', color: '#00b8a0' },
+      { name: 'Leadership Quality', score: 8.5, detail: 'Experienced executive team. Data & Youth Insights team dedicated to evaluation. Principal partner Google.org signals credibility.', color: '#00b8a0' },
+      { name: 'Volunteer Engagement', score: 9.0, detail: '2,000+ volunteer mentors. Structured training and support. Matched to mentees using compatibility framework. High retention rate.', color: '#00b8a0' },
+      { name: 'Community Embeddedness', score: 8.8, detail: 'School-based delivery model. 85%+ school satisfaction. Parent/carer feedback integrated. Ripples Giving Circle mobilising philanthropists.', color: '#00b8a0' },
+      { name: 'Transparency', score: 9.0, detail: 'Published annual evaluation report and annual report. Impact data openly available. Social value calculation: $4 for every $1 invested.', color: '#00b8a0' },
+    ],
+    impact: {
+      headline: '85% of mentees improved in at least 1 outcome area',
+      stats: [
+        { icon: '🧑‍🎓', label: 'Young people supported', val: '10,000+/yr' },
+        { icon: '📈', label: 'Improved ≥1 outcome', val: '85%' },
+        { icon: '💙', label: 'Improved ≥2 outcomes', val: '64%' },
+        { icon: '💰', label: 'Social return per $1', val: '$4.00' },
+        { icon: '🏫', label: 'Schools partnered', val: '300+' },
+        { icon: '🤲', label: 'Volunteer mentors', val: '2,000+' },
+      ],
+      socialValue: '$40M+',
+      costPerBeneficiary: '$500',
+    },
+    tierReason: 'Raise meets all Tier 3 criteria: rigorous independent evaluation, formal Theory of Change, diversified multi-million dollar revenue, national footprint, and measurable outcomes with social return on investment data. Eligible for outcome-linked payments.',
+    fundingNeeds: 'Regional expansion ($200K–$500K) · Volunteer recruitment systems ($50K) · Longitudinal tracking infrastructure ($100K)',
+    keyPeople: [
+      { name: 'Leon Condon', role: 'Board Chair', bg: '' },
+      { name: 'Vicki Condon AM', role: 'CEO', bg: '' },
+      { name: 'Jun Bei Liu', role: 'Non-Executive Director', bg: 'Fund Manager & Media Personality' },
+      { name: 'David Gonski AC', role: 'Patron', bg: 'Chair, Patron Advisory Council' },
+      { name: 'Prof. Lucas Walsh', role: 'Research Advisory Chair', bg: 'Monash Centre for Youth Policy' },
+    ],
+  },
+  {
+    id: 'streetwork',
+    name: 'Streetwork',
+    sectors: ['Youth Mentoring', 'Mental Health'],
+    socialValue: '$5.6M+',
+    socialReturn: '$16 per $1 (PwC)',
+    emoji: '🏙️',
+    color: '#f4a729',
+    tagline: 'Supporting vulnerable young people in Northern Sydney to turn their lives around',
+    focus: 'Youth at Risk',
+    location: 'Northern Sydney, NSW',
+    established: '2000',
+    tier: 2,
+    asitScore: 7.8,
+    revenue: '$1–2M',
+    reach: '500+',
+    volunteers: '50+',
+    programs: ['Kickstart Mentoring', 'Police Advocacy', 'Wellbeing Program', 'Life Skills'],
+    dimensions: [
+      { name: 'Governance & Accountability', score: 7.5, detail: 'ACNC registered. Annual social impact reports produced by independent evaluator (Huber Social) since 2018. Transparent financials.', color: '#f4a729' },
+      { name: 'Impact & Results', score: 8.5, detail: '6 consecutive annual impact reports tracking wellbeing outcomes across 54 factors. Mental wellness, resilience and life skills are top outcomes. Consistently strong evidence base.', color: '#f4a729' },
+      { name: 'Financial Sustainability', score: 7.0, detail: 'Community-fundraised model with donation base. Diverse volunteer ecosystem. Some dependency on individual donors. Expanding corporate partnership strategy.', color: '#f4a729' },
+      { name: 'Geographic Reach', score: 6.0, detail: 'Northern Sydney region focus. Deep local community embeddedness. Geographic concentration is a limitation for scale but a strength for impact depth.', color: '#f4a729' },
+      { name: 'Program Maturity', score: 8.0, detail: '20+ years operating. Programs adapted based on annual wellbeing tracking. Police advocacy model is innovative and evidence-informed.', color: '#f4a729' },
+      { name: 'Leadership Quality', score: 7.5, detail: 'Dedicated founder-led leadership. Consistent mission clarity over two decades. Engaged volunteer mentors with structured training.', color: '#f4a729' },
+      { name: 'Volunteer Engagement', score: 8.0, detail: 'Police advocates and community mentors. Volunteers central to service model. High volunteer commitment evidenced by multi-year retention.', color: '#f4a729' },
+      { name: 'Community Embeddedness', score: 9.0, detail: 'Deep Northern Sydney roots. Works closely with police, schools and family services. Strong local donor and volunteer community rallied around shared mission.', color: '#f4a729' },
+      { name: 'Transparency', score: 8.0, detail: '6 published Huber Social impact reports. Wellbeing tracked longitudinally. Donation tracking allows donors to see exact impact.', color: '#f4a729' },
+    ],
+    impact: {
+      headline: '6 years of tracked wellbeing improvements for Northern Sydney youth at risk',
+      stats: [
+        { icon: '👦', label: 'Young people supported', val: '500+/yr' },
+        { icon: '📊', label: 'Wellbeing factors tracked', val: '54' },
+        { icon: '📅', label: 'Years of impact data', val: '6+' },
+        { icon: '🎯', label: 'Top outcome: Mental wellness', val: '✓' },
+        { icon: '💪', label: 'Top outcome: Resilience', val: '✓' },
+        { icon: '🌟', label: 'Top outcome: Life skills', val: '✓' },
+      ],
+      socialValue: '$5.6M+ (PwC: $16 per $1 donated)',
+      costPerBeneficiary: '$2,000–3,000',
+    },
+    tierReason: 'Streetwork qualifies for Tier 2 with strong community embeddedness, consistent impact evidence from 6 annual reports, and a clear wellbeing measurement framework. Geographic concentration and revenue scale position it for growth grants to expand reach.',
+    fundingNeeds: 'Program expansion beyond Northern Sydney ($100K) · Digital case management system ($40K) · Community hub infrastructure ($80K)',
+    keyPeople: [
+      { name: 'Michael Greene', role: 'Board Chair & Company Secretary', bg: 'Deputy CE Partner, Norton Rose Fulbright' },
+      { name: 'Geoffrey Munday', role: 'Non-Executive Director (Youth Services)', bg: 'Chartered Accountant, 35+ years experience' },
+      { name: 'Huber Social', role: 'Independent Evaluator', bg: 'Annual Social Impact Reports since 2018' },
+    ],
+  },
+  {
+    id: 'batyr',
+    name: 'Batyr',
+    sectors: ['Mental Health'],
+    socialValue: '$10M+',
+    socialReturn: '$8 per $1 (est.)',
+    emoji: '🧠',
+    color: '#7c5cbf',
+    tagline: 'Harnessing the lived experience of young people to create mentally healthy communities',
+    focus: 'Youth Mental Health',
+    location: 'NSW · National',
+    established: '2011',
+    tier: 2,
+    asitScore: 7.6,
+    revenue: '$2–3M',
+    reach: '50,000+',
+    volunteers: '200+',
+    programs: ['batyr@school', 'batyr@uni', 'batyr@work', 'Regional & Community', 'Advocacy'],
+    dimensions: [
+      { name: 'Governance & Accountability', score: 8.0, detail: 'ACNC registered. Annual report published. Formal Board. Internal and external program evaluation processes. DGR status.', color: '#7c5cbf' },
+      { name: 'Impact & Results', score: 7.5, detail: 'Comprehensive program evaluation conducted across all five delivery streams. Theory of Change documented. Staff survey and stakeholder feedback integration.', color: '#7c5cbf' },
+      { name: 'Financial Sustainability', score: 7.0, detail: 'Diversified revenue across school, university and workplace programs. Fee-for-service model provides recurring revenue. Government and philanthropic grants supplement.', color: '#7c5cbf' },
+      { name: 'Geographic Reach', score: 8.5, detail: 'National delivery across school, university and workplace settings. Regional and remote program expansion. Strong NSW base with national footprint.', color: '#7c5cbf' },
+      { name: 'Program Maturity', score: 8.0, detail: '13+ years. Five distinct program streams each with defined non-negotiables and Theory of Change alignment. Peer-to-peer model is internationally recognised.', color: '#7c5cbf' },
+      { name: 'Leadership Quality', score: 8.0, detail: 'Dedicated Program Development & Delivery team. Head of Research role integrated. Organisational retreat for program co-design demonstrates adaptive management.', color: '#7c5cbf' },
+      { name: 'Volunteer Engagement', score: 8.5, detail: '200+ trained lived experience speakers. Casual facilitator pool. Rigorous speaker training and support. Authentic peer model is program core.', color: '#7c5cbf' },
+      { name: 'Community Embeddedness', score: 7.5, detail: 'School, university and workplace partnerships. Advocacy work with government and sector. Building local informal support networks in regional areas.', color: '#7c5cbf' },
+      { name: 'Transparency', score: 7.0, detail: 'Program evaluation report published. Annual report available. Opportunity to publish more granular outcomes data to strengthen funder confidence.', color: '#7c5cbf' },
+    ],
+    impact: {
+      headline: 'Reaching 50,000+ young people with evidence-based mental health education',
+      stats: [
+        { icon: '🧠', label: 'Young people reached', val: '50,000+' },
+        { icon: '🏫', label: 'School programs', val: 'National' },
+        { icon: '🎓', label: 'University programs', val: 'National' },
+        { icon: '💼', label: 'Workplace programs', val: 'National' },
+        { icon: '🌏', label: 'Regional reach', val: 'Expanding' },
+        { icon: '🗣️', label: 'Lived exp. speakers', val: '200+' },
+      ],
+      socialValue: '$10M+ (est.)',
+      costPerBeneficiary: '$60–80',
+    },
+    tierReason: 'Batyr qualifies for Tier 2 with national scale, documented Theory of Change, peer model evidence base and multi-stream revenue. Formal SROI and longitudinal outcome data would unlock Tier 3.',
+    fundingNeeds: 'Regional program expansion ($150K) · Longitudinal impact measurement ($60K) · Speaker support systems ($40K)',
+    keyPeople: [
+      { name: 'Ellen Derrick', role: 'Board Chair', bg: 'Managing Partner, Deloitte Consulting' },
+      { name: 'Michael Jefferies', role: 'Board Secretary', bg: 'Corporate Lawyer, Hamilton Locke' },
+      { name: 'Bianca Buckman', role: 'Finance Committee', bg: 'Partner, PwC Australia' },
+      { name: 'Luke Branagan', role: 'Board Director', bg: 'Director, Philanthropic Services, JBWere' },
+      { name: 'Myf Maple', role: 'Board Director', bg: 'Professor of Social Work, UNE' },
+    ],
+  },
+  {
+    id: 'beacon',
+    name: 'Beacon Foundation',
+    sectors: ['Career Education'],
+    socialValue: '$8M+',
+    socialReturn: '$6 per $1 (est.)',
+    emoji: '🎓',
+    color: '#f4a729',
+    tagline: 'Bridging the gap between education and employment for young Australians',
+    focus: 'Career Education',
+    location: 'Tasmania · National',
+    established: '1989',
+    tier: 2,
+    asitScore: 7.9,
+    revenue: '$2–3M',
+    reach: '7,000+',
+    volunteers: '1,500+',
+    programs: ['Short Courses (HIPs)', 'GrIPPs', 'Site Tours', 'Speed Careering', 'Work-Based Learning', 'Beacon Career Program'],
+    dimensions: [
+      { name: 'Governance & Accountability', score: 8.5, detail: 'ACNC registered. Government partnerships (Dept of Education TAS). 35+ years of operations. Formal board and published national outcomes report.', color: '#f4a729' },
+      { name: 'Impact & Results', score: 8.0, detail: '94% of young people understand employer skills needed. 97% of volunteers report helping students prepare. 77% feel confident in post-school opportunities. 404 work placements facilitated.', color: '#f4a729' },
+      { name: 'Financial Sustainability', score: 7.5, detail: 'Government education partnerships provide recurring revenue. Employer volunteer model reduces delivery cost. National spread across 104 schools reduces concentration risk.', color: '#f4a729' },
+      { name: 'Geographic Reach', score: 8.5, detail: '104 schools nationwide. Strong Tasmania base. NSW volunteer partnerships. 8 Queensland regions through IBFF collaboration model.', color: '#f4a729' },
+      { name: 'Program Maturity', score: 9.0, detail: '35+ years operating. Multiple program formats (Short Courses, WBLS, Career Program). Backed by Department of Education. Evidence-based employer engagement model.', color: '#f4a729' },
+      { name: 'Leadership Quality', score: 8.0, detail: 'Long-tenured leadership team. Strong government and employer relationships. New programs (Career Program 2022) show adaptive capacity.', color: '#f4a729' },
+      { name: 'Volunteer Engagement', score: 9.5, detail: '1,500+ industry volunteer engagements created. 850+ in short courses alone. Volunteers are employers — high relevance and impact. 97% report positive experience.', color: '#f4a729' },
+      { name: 'Community Embeddedness', score: 8.0, detail: 'School-industry bridge model. Deep community roots in Tasmania. 1,600+ educator interactions. Community feedback integrated into program design.', color: '#f4a729' },
+      { name: 'Transparency', score: 7.5, detail: 'National Outcomes Report published annually. Participant satisfaction rates openly reported. Good data discipline with room to add longitudinal employment tracking.', color: '#f4a729' },
+    ],
+    impact: {
+      headline: '7,000+ young people connected to career opportunities through 104 schools nationwide',
+      stats: [
+        { icon: '🎓', label: 'Young people reached', val: '7,000+' },
+        { icon: '🏫', label: 'Schools nationwide', val: '104' },
+        { icon: '🤝', label: 'Industry volunteer engagements', val: '1,500+' },
+        { icon: '💼', label: 'Work placements (TAS)', val: '404' },
+        { icon: '📊', label: 'Feel confident post-school', val: '77%' },
+        { icon: '🏆', label: 'Understand employer needs', val: '94%' },
+      ],
+      socialValue: '$8M+ (est.)',
+      costPerBeneficiary: '$400',
+    },
+    tierReason: 'Beacon Foundation qualifies for Tier 2 with strong government partnerships, 35 years of program maturity, excellent volunteer engagement and clear impact data. Adding employment outcome tracking would support Tier 3 pathway.',
+    fundingNeeds: 'NSW school expansion ($120K) · Longitudinal employment outcome tracking ($50K) · Digital curriculum ($80K)',
+    keyPeople: [
+      { name: 'Executive Team', role: 'Not publicly disclosed', bg: 'Details not in available reports' },
+      { name: 'Dept. of Education TAS', role: 'Government Partner', bg: 'Work-Based Learning & Career Program' },
+    ],
+  },
+  {
+    id: 'littledreamers',
+    name: 'Little Dreamers',
+    sectors: ['Young Carers'],
+    socialValue: '$7M+',
+    socialReturn: '$5 per $1 (est.)',
+    emoji: '💛',
+    color: '#22c55e',
+    tagline: 'Australia\'s leading Young Carer organisation — improving lives of young Australians aged 4–25',
+    focus: 'Young Carers',
+    location: 'NSW · VIC · QLD · National',
+    established: '2009',
+    tier: 2,
+    asitScore: 7.3,
+    revenue: '$1.5–2M',
+    reach: '10,000+',
+    volunteers: '449',
+    programs: ['Holiday Programs', 'Peer Support Groups', 'School Programs', 'Job Readiness', 'Carer Gateway Services'],
+    dimensions: [
+      { name: 'Governance & Accountability', score: 7.5, detail: 'ACNC registered. Annual reports published. Carer Gateway service provider (government contracted). Full financial reporting. Experienced board.', color: '#22c55e' },
+      { name: 'Impact & Results', score: 7.0, detail: 'Services engaged 10,000+ times in FY23 (first year). 1,287 new Young Carers welcomed. Outcomes tracked across 5 focus areas: education, employment, mental health, socialisation, financial wellbeing.', color: '#22c55e' },
+      { name: 'Financial Sustainability', score: 6.5, detail: '$449K deficit FY23 (second consecutive year) driven by expansion costs. Revenue grew 30%. Fee-for-service model maturing. Carer Gateway contract provides stability.', color: '#22c55e' },
+      { name: 'Geographic Reach', score: 8.0, detail: 'Operates in VIC, NSW and QLD. Holiday programs in metro and regional areas. Online Peer Support expands national reach. Carer Gateway expands service mandate.', color: '#22c55e' },
+      { name: 'Program Maturity', score: 7.5, detail: '14 years operating. Founded by Young Carers for Young Carers — authentic co-design. Multiple program types across in-person and online. Policy engagement with Dept of Education VIC.', color: '#22c55e' },
+      { name: 'Leadership Quality', score: 7.5, detail: 'CEO with lived experience of Young Caring. Passionate advocacy for systemic change. Recognised gap-filler — only national Young Carer organisation of this type.', color: '#22c55e' },
+      { name: 'Volunteer Engagement', score: 8.0, detail: '449 active volunteers, 1,698 hours in FY23. Top volunteers give 120–136 hours. Strong volunteer community. 100+ new volunteers recruited.', color: '#22c55e' },
+      { name: 'Community Embeddedness', score: 8.5, detail: 'Founded by and for Young Carers. Deep community trust. Policy influence at state level. IMPACT 100 Sydney, Westpac Foundation, Vincent Fairfax partnerships signal credibility.', color: '#22c55e' },
+      { name: 'Transparency', score: 7.0, detail: 'Annual reports published with program data. Financial transparency includes disclosure of deficit. Scope for stronger outcomes reporting framework.', color: '#22c55e' },
+    ],
+    impact: {
+      headline: 'Australia\'s only national organisation dedicated to Young Carers aged 4–25',
+      stats: [
+        { icon: '💛', label: 'Young Carers supported', val: '10,000+/yr' },
+        { icon: '🏡', label: 'Holiday program attendees', val: '1,136' },
+        { icon: '👥', label: 'Peer support groups', val: '106' },
+        { icon: '🤝', label: 'Active volunteers', val: '449' },
+        { icon: '⏰', label: 'Volunteer hours', val: '1,698' },
+        { icon: '🏛️', label: 'Govt funded programs', val: 'Carer Gateway' },
+      ],
+      socialValue: '$7M+ (est.)',
+      costPerBeneficiary: '$200',
+    },
+    tierReason: 'Little Dreamers qualifies for Tier 2 with national reach, government contracting (Carer Gateway), strong community embeddedness and 14 years of operation. Financial deficit is a monitored risk — restructuring underway. ASIT support would accelerate stability.',
+    fundingNeeds: 'Operating stability fund ($150K) · Outcomes measurement system ($40K) · NSW program expansion ($100K)',
+    keyPeople: [
+      { name: 'Tom Levi GAICD', role: 'Board Chairperson', bg: '' },
+      { name: 'Madeleine Buchner OAM', role: 'Founder & CEO', bg: 'Young Carer — founded org with lived experience' },
+      { name: 'Michael Gilbert', role: 'Treasurer', bg: '' },
+      { name: 'Veronica Lister', role: 'Programs Director', bg: '' },
+    ],
+  },
+  {
+    id: 'ibff',
+    name: 'IBFF',
+    sectors: ['Youth Mentoring'],
+    socialValue: 'Developing',
+    socialReturn: 'Not yet assessed',
+    emoji: '🌏',
+    color: '#ff6b6b',
+    tagline: 'Indigenous and community mentoring across 8 Queensland regions building futures',
+    focus: 'Community Mentoring',
+    location: 'Queensland · 8 Regions',
+    established: '2018',
+    tier: 1,
+    asitScore: 6.1,
+    revenue: '$1.1–1.7M',
+    reach: '2,000+',
+    volunteers: '100+',
+    programs: ['Community Mentoring Programs (×100/yr)', 'Regional Outreach'],
+    dimensions: [
+      { name: 'Governance & Accountability', score: 6.0, detail: 'Registered charity with clear governance structure. Financial reporting published in impact report. Growing from grassroots — compliance infrastructure developing.', color: '#ff6b6b' },
+      { name: 'Impact & Results', score: 6.0, detail: 'Financial growth from $1.1M (2023) to $1.7M (2025). 100 mentoring programs delivered annually. 8 Queensland regions reached. Impact measurement framework early-stage.', color: '#ff6b6b' },
+      { name: 'Financial Sustainability', score: 6.5, detail: 'Revenue growing: $1.1M→$1.5M→$1.7M over 3 years. Consistent surplus reinvested into growth. Cost to deliver 100 programs = $1.25M/year. Positive trajectory.', color: '#ff6b6b' },
+      { name: 'Geographic Reach', score: 7.5, detail: '8 Queensland regions — significant footprint for a young organisation. Deep community ties essential for culturally safe delivery. Regional and remote reach is key differentiator.', color: '#ff6b6b' },
+      { name: 'Program Maturity', score: 5.5, detail: '7 years operating. 100 mentoring programs/year is a strong foundation. Program frameworks developing. Theory of Change in early articulation.', color: '#ff6b6b' },
+      { name: 'Leadership Quality', score: 6.5, detail: 'Community-led leadership with deep regional relationships. Growing operational capacity. Investment in infrastructure would unlock significant scale potential.', color: '#ff6b6b' },
+      { name: 'Volunteer Engagement', score: 6.5, detail: 'Community volunteers central to delivery. Local mentors with cultural knowledge and lived experience. Volunteer management systems developing.', color: '#ff6b6b' },
+      { name: 'Community Embeddedness', score: 8.5, detail: 'Deep cultural embeddedness across 8 Queensland regions. Community-led model ensures relevance. Trusted by communities where formal services have failed.', color: '#ff6b6b' },
+      { name: 'Transparency', score: 5.5, detail: '2025 Impact Report published with financial snapshot. Opportunity to strengthen outcomes reporting, Theory of Change documentation and beneficiary feedback collection.', color: '#ff6b6b' },
+    ],
+    impact: {
+      headline: '100 mentoring programs annually across 8 Queensland regions with growing community reach',
+      stats: [
+        { icon: '🌏', label: 'Queensland regions', val: '8' },
+        { icon: '📋', label: 'Programs per year', val: '100' },
+        { icon: '📈', label: 'Revenue growth (3yr)', val: '55%' },
+        { icon: '💰', label: 'Surplus reinvested', val: 'Yes' },
+        { icon: '👥', label: 'Community mentors', val: '100+' },
+        { icon: '💡', label: 'Cost per 100 programs', val: '$1.25M' },
+      ],
+      socialValue: 'Not yet assessed',
+      costPerBeneficiary: 'Data developing',
+    },
+    tierReason: 'IBFF qualifies for Tier 1 — strong community embeddedness and financial growth demonstrate real potential. Capacity-building support via ASIT would accelerate governance maturity, Theory of Change articulation and impact measurement, unlocking Tier 2 within 12 months.',
+    fundingNeeds: 'Theory of Change development ($20K) · Outcomes tracking system ($15K) · Governance capacity ($15K) · Program delivery expansion ($50K)',
+    keyPeople: [
+      { name: 'John Godwin', role: 'Founder & CEO', bg: 'Leads 8-region QLD mentoring network' },
+    ],
+  },
+];
+
+// ── SECTOR FILTER ──
+let activeSector = null;
+
+function filterBySector(el) {
+  const sector = el.getAttribute('data-sector');
+
+  // Toggle off if same sector clicked again
+  if (activeSector === sector) {
+    clearSectorFilter();
+    return;
+  }
+  activeSector = sector;
+
+  // Highlight active sector card
+  document.querySelectorAll('.sector-item').forEach(s => {
+    s.classList.toggle('active-sector', s.getAttribute('data-sector') === sector);
+  });
+
+  // Show filter banner
+  const matched = charities.filter(c => c.sectors.includes(sector));
+  document.getElementById('filter-tag-text').textContent = sector;
+  document.getElementById('filter-match-count').textContent =
+    `${matched.length} ${matched.length === 1 ? 'charity' : 'charities'} found`;
+  document.getElementById('filter-banner').classList.add('visible');
+  document.getElementById('grid-label').textContent = `Showing: ${sector}`;
+
+  // Dim/highlight cards in master grid
+  document.querySelectorAll('#master-grid .charity-card').forEach(card => {
+    const id = card.getAttribute('data-id');
+    const c = charities.find(x => x.id === id);
+    const isMatch = c && c.sectors.includes(sector);
+    card.classList.toggle('dimmed', !isMatch);
+    card.classList.toggle('highlighted', isMatch);
+  });
+
+  // Smooth scroll to grid
+  document.getElementById('master-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearSectorFilter() {
+  activeSector = null;
+  document.querySelectorAll('.sector-item').forEach(s => s.classList.remove('active-sector'));
+  document.getElementById('filter-banner').classList.remove('visible');
+  document.getElementById('grid-label').textContent = 'Click any charity to view full profile';
+  document.querySelectorAll('#master-grid .charity-card').forEach(card => {
+    card.classList.remove('dimmed', 'highlighted');
+  });
+}
+
+// ── RENDER ──
+function renderCharityCard(c, onClick) {
+  const tierColors = { 1: 'tier1', 2: 'tier2', 3: 'tier3' };
+  const tierLabels = { 1: 'Tier 1 • $10K–50K', 2: 'Tier 2 • $50K–200K', 3: 'Tier 3 • $200K+' };
+  const scoreColor = c.asitScore >= 8 ? '#00b8a0' : c.asitScore >= 7 ? '#f4a729' : '#ff6b6b';
+
+  return `
+    <div class="charity-card" data-id="${c.id}" onclick="${onClick}">
+      <div class="card-header">
+        <div class="card-icon" style="background:${c.color}20">${c.emoji}</div>
+        <div class="card-tier">
+          <div class="tier-badge ${tierColors[c.tier]}">${tierLabels[c.tier]}</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:${scoreColor};text-align:right">ASIT ${c.asitScore}/10</div>
+        </div>
+      </div>
+      <div class="card-name">${c.name}</div>
+      <div class="card-focus">${c.focus}</div>
+      <div class="card-location">📍 ${c.location} · Est. ${c.established}</div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-label"><span>ASIT Score</span><span style="color:${scoreColor}">${c.asitScore}/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill fill-teal" style="width:${c.asitScore*10}%"></div></div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-label"><span>Governance</span><span>${c.dimensions[0].score}/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill fill-gold" style="width:${c.dimensions[0].score*10}%"></div></div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-label"><span>Impact Evidence</span><span>${c.dimensions[1].score}/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill fill-purple" style="width:${c.dimensions[1].score*10}%"></div></div>
+      </div>
+      <div class="card-stats">
+        <div class="card-stat">
+          <div class="stat-val">${c.reach}</div>
+          <div class="stat-key">Reach/yr</div>
+        </div>
+        <div class="card-stat">
+          <div class="stat-val">${c.revenue}</div>
+          <div class="stat-key">Revenue</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:10px">
+        ${(c.sectors||[]).map(s => `<span style="font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(0,184,160,0.08);color:var(--teal);border:1px solid rgba(0,184,160,0.2)">${s}</span>`).join('')}
+      </div>
+      ${c.socialValue && c.socialValue !== 'Developing' ? `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding:8px 10px;background:rgba(0,184,160,0.06);border-radius:8px;border:1px solid rgba(0,184,160,0.15)">
+        <span style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em">Social Value</span>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);font-weight:500">${c.socialValue} <span style="font-size:9px;color:var(--slate)">(${c.socialReturn})</span></span>
+      </div>` : `
+      <div style="margin-top:10px;padding:8px 10px;background:rgba(136,153,170,0.05);border-radius:8px;border:1px solid rgba(136,153,170,0.1)">
+        <span style="font-size:10px;color:var(--slate)">⏳ Social value measurement developing</span>
+      </div>`}
+    </div>
+  `;
+}
+
+// Populate grids
+document.getElementById('master-grid').innerHTML = charities.map(c =>
+  renderCharityCard(c, `openProfile('${c.id}')`)
+).join('');
+document.getElementById('browse-grid').innerHTML = charities.map(c =>
+  renderCharityCard(c, `openProfile('${c.id}')`)
+).join('');
+
+function openProfile(id) {
+  const c = charities.find(x => x.id === id);
+  showView('charities');
+  document.getElementById('charity-list-view').style.display = 'none';
+  document.getElementById('charity-profile-view').style.display = 'block';
+
+  // Hero section
+  document.getElementById('p-icon').innerHTML = c.emoji;
+  document.getElementById('p-icon').style.background = c.color + '20';
+  document.getElementById('p-icon').style.fontSize = '30px';
+  document.getElementById('p-name').textContent = c.name;
+  document.getElementById('p-tagline').textContent = c.tagline;
+
+  const tierColors = { 1: 'badge-teal', 2: 'badge-gold', 3: 'badge-teal' };
+  const tierLabels = { 1: 'Tier 1 — Foundation', 2: 'Tier 2 — Growth', 3: 'Tier 3 — Impact Investment' };
+  document.getElementById('p-badges').innerHTML = `
+    <span class="badge ${tierColors[c.tier]}">${tierLabels[c.tier]}</span>
+    <span class="badge badge-slate">${c.focus}</span>
+    <span class="badge badge-slate">📍 ${c.location}</span>
+    <span class="badge badge-slate">Est. ${c.established}</span>
+  `;
+
+  const pct = Math.round(c.asitScore / 10 * 360);
+  document.getElementById('p-circle').style.setProperty('--pct', `${pct}deg`);
+  document.getElementById('p-score').textContent = c.asitScore;
+  document.getElementById('p-tier-desc').textContent = c.tierReason.substring(0, 130) + '...';
+
+  const scoreColor = c.asitScore >= 8 ? '#00b8a0' : c.asitScore >= 7 ? '#f4a729' : '#ff6b6b';
+
+  // Single scroll content
+  document.getElementById('p-scroll-content').innerHTML = `
+    <div style="max-width:1400px;margin:0 auto;padding:0 2rem 3rem">
+
+      <!-- ── SECTION 1: KEY DETAILS & ASIT SCORE ── -->
+      <div class="profile-section-header">Key Details & ASIT Score</div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:2rem">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          ${[
+            ['📅','Established',c.established],
+            ['📍','Operating Region',c.location],
+            ['🎯','Focus Area',c.focus],
+            ['👥','Annual Reach',c.reach],
+            ['💰','Revenue',c.revenue],
+            ['🤝','Volunteers',c.volunteers],
+          ].map(([icon,label,val])=>`
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px">
+              <div style="font-size:20px;margin-bottom:6px">${icon}</div>
+              <div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">${label}</div>
+              <div style="font-size:13px;font-weight:500">${val}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="background:rgba(0,184,160,0.05);border:1px solid rgba(0,184,160,0.2);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:6px">ASIT Score</div>
+            <div style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:${scoreColor}">${c.asitScore}<span style="font-size:1rem;color:var(--slate)">/10</span></div>
+          </div>
+          <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px"><div style="height:100%;width:${c.asitScore*10}%;background:${scoreColor};border-radius:2px"></div></div>
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:4px">Funding Tier</div>
+            <div class="tier-badge ${['','tier1','tier2','tier3'][c.tier]}" style="display:inline-flex">${tierLabels[c.tier]}</div>
+          </div>
+          ${c.socialValue && c.socialValue !== 'Developing' ? `
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:4px">Social Value Generated</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal)">${c.socialValue}</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">${c.socialReturn}</div>
+          </div>` : `
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:4px">Social Value</div>
+            <div style="font-size:12px;color:var(--slate)">Measurement framework developing</div>
+          </div>`}
+        </div>
+      </div>
+
+      <!-- ── SECTION 2: LEADERSHIP TEAM ── -->
+      <div class="profile-section-header">Leadership Team</div>
+      <div class="people-grid" style="margin-bottom:2rem">
+        ${c.keyPeople.map((p, i) => `
+          <div class="person-card">
+            <div class="person-avatar" style="${avatarStyle(i)}">${initials(p.name)}</div>
+            <div class="person-info">
+              <div class="person-name">${p.name}</div>
+              <div class="person-role">${p.role}</div>
+              ${p.bg ? `<div class="person-bg">${p.bg}</div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- ── SECTION 3: 9-DIMENSION PROFILE ── -->
+      <div class="profile-section-header">9-Dimension Profile</div>
+      <div class="dimensions-grid" style="margin-bottom:2rem">
+        ${c.dimensions.map(d => `
+          <div class="dim-card">
+            <div class="dim-header">
+              <div class="dim-name">${d.name}</div>
+              <div class="dim-score-val" style="color:${d.score>=8?'#00b8a0':d.score>=6.5?'#f4a729':'#ff6b6b'}">${d.score}/10</div>
+            </div>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:${d.score*10}%;background:${d.color}"></div></div>
+            <div class="dim-detail">${d.detail}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- ── SECTION 4: DONOR VIEW ── -->
+      <div class="profile-section-header">Donor View</div>
+      <div class="donor-grid" style="margin-bottom:2rem">
+        <div class="donor-card">
+          <div class="donor-card-title">Key Impact Metrics</div>
+          ${c.impact.stats.map(s => `
+            <div class="impact-row">
+              <div class="impact-icon">${s.icon}</div>
+              <div class="impact-text"><div class="impact-label">${s.label}</div></div>
+              <div class="impact-val">${s.val}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div>
+          <div class="donor-card" style="margin-bottom:12px">
+            <div class="donor-card-title">Why Support ${c.name}</div>
+            <p style="font-size:13px;color:var(--slate);line-height:1.7;margin-bottom:14px">${c.tagline}</p>
+            ${c.socialValue && c.socialValue !== 'Developing' ? `
+            <div style="background:rgba(0,184,160,0.06);border-radius:10px;padding:14px;margin-bottom:12px">
+              <div style="font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.08em">Social Value Generated</div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--teal);margin-top:4px">${c.socialValue}</div>
+              <div style="font-size:11px;color:var(--slate);margin-top:2px">${c.socialReturn}</div>
+            </div>` : ''}
+            <button class="give-btn">💚 Support ${c.name.split(' ')[0]}</button>
+            <div class="trust-signals">
+              <div class="trust-item"><span class="trust-check">✓</span> ACNC Registered</div>
+              <div class="trust-item"><span class="trust-check">✓</span> Annual Impact Report</div>
+              <div class="trust-item"><span class="trust-check">✓</span> ASIT Verified</div>
+              <div class="trust-item"><span class="trust-check">✓</span> ${tierLabels[c.tier]}</div>
+            </div>
+          </div>
+          <div class="donor-card">
+            <div class="donor-card-title">Funding Needs</div>
+            ${c.fundingNeeds.split(' · ').map(n=>`<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:12px"><span style="color:var(--teal);margin-top:1px">→</span><span style="color:var(--light)">${n}</span></div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 5: IMPACT DATA ── -->
+      <div class="profile-section-header">Impact Data</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="donor-card">
+          <div class="donor-card-title">ASIT Tier Assessment</div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.7;margin-bottom:16px">${c.tierReason}</p>
+          <div class="donor-card-title" style="margin-top:16px">Programs</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            ${c.programs.map(p=>`<div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:7px 12px;font-size:12px;color:var(--light)">📌 ${p}</div>`).join('')}
+          </div>
+        </div>
+        <div class="donor-card">
+          <div class="donor-card-title">All 9 Dimension Scores</div>
+          ${c.dimensions.map(d=>`
+            <div style="margin-bottom:9px">
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--slate);margin-bottom:3px">
+                <span>${d.name}</span>
+                <span style="color:${d.score>=8?'#00b8a0':d.score>=6.5?'#f4a729':'#ff6b6b'}">${d.score}/10</span>
+              </div>
+              <div class="score-bar"><div class="score-bar-fill" style="width:${d.score*10}%;background:${d.color}"></div></div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showCharityList() {
+  document.getElementById('charity-list-view').style.display = 'block';
+  document.getElementById('charity-profile-view').style.display = 'none';
+}
+
+function showView(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const labels = { master: 'ASIT Overview', charities: 'Charities', funding: 'ASIT Framework' };
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    if (b.textContent.trim() === labels[view]) b.classList.add('active');
+  });
+  if (view === 'charities') {
+    document.getElementById('charity-list-view').style.display = 'block';
+    document.getElementById('charity-profile-view').style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>
