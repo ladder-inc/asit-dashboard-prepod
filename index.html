@@ -433,6 +433,7 @@
     <nav class="nav">
       <button class="nav-btn active" onclick="showView('master')">ASIT Overview</button>
       <button class="nav-btn" onclick="showView('charities')">Charities</button>
+      <button class="nav-btn" onclick="showView('bellambi')">Project Bellambi</button>
       <button class="nav-btn" onclick="showView('funding')">ASIT Framework</button>
     </nav>
     <div class="header-badge">
@@ -610,8 +611,370 @@
 </div>
 
 <!-- ════════════════════════════════════════════
-     VIEW 3: ASIT FRAMEWORK
+     VIEW 4: PROJECT BELLAMBI
 ════════════════════════════════════════════ -->
+<div id="view-bellambi" class="view">
+
+  <!-- Hero -->
+  <div style="background:linear-gradient(160deg,#0a1628 0%,#0f1e10 50%,#1a1408 100%);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem">
+    <div style="max-width:1400px;margin:0 auto">
+      <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div style="width:64px;height:64px;border-radius:16px;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">🏘️</div>
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#4ade80;font-weight:600;margin-bottom:6px">ASIT Pilot Project · It's Our Place Initiative · Illawarra-Shoalhaven NSW</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1.2">Project Bellambi<br><span style="color:#4ade80">Collective Impact in Action</span></div>
+          <div style="color:var(--slate);font-size:14px;margin-top:8px;max-width:680px">A place-based, whole-of-community initiative tackling intergenerational disadvantage in Bellambi, Wollongong NSW. Supported and facilitated by ASIT since 2015 as a subsidiary project under the It's Our Place model — Australia's first Collective Impact initiative targeting social housing estates at this scale.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+            <span class="badge badge-teal">📍 Bellambi, Wollongong NSW</span>
+            <span class="badge badge-slate">Est. 2015</span>
+            <span class="badge badge-slate">🏛️ ASIT Subsidiary</span>
+            <span class="badge badge-slate">👥 4,011 residents</span>
+            <span class="badge badge-slate">🏠 78% Social Housing</span>
+            <span class="badge badge-slate">10+ Year Commitment</span>
+          </div>
+        </div>
+        <div style="background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px 22px;min-width:190px;flex-shrink:0">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:6px">ASIT Score</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:#4ade80">7.8<span style="font-size:1rem;color:var(--slate)">/10</span></div>
+          <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin:8px 0"><div style="height:100%;width:78%;background:#4ade80;border-radius:2px"></div></div>
+          <div class="tier-badge tier2" style="display:inline-flex;margin-top:4px">Tier 2 — Growth</div>
+          <div style="font-size:11px;color:var(--slate);margin-top:8px">Social Value: Long-term<br>10–20yr return horizon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1400px;margin:0 auto;padding:0 2rem 3rem">
+
+    <!-- ── KPIs ── -->
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:2rem 0">
+      <div class="kpi" style="position:relative"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4ade80,var(--gold))"></div><div class="kpi-val" style="color:#4ade80">4,011</div><div class="kpi-label">Residents</div><div class="kpi-delta">Bellambi community</div></div>
+      <div class="kpi" style="position:relative"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4ade80,var(--gold))"></div><div class="kpi-val" style="color:#4ade80">123</div><div class="kpi-label">Actions Created</div><div class="kpi-delta">▲ 110 completed</div></div>
+      <div class="kpi" style="position:relative"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4ade80,var(--gold))"></div><div class="kpi-val" style="color:#4ade80">800+</div><div class="kpi-label">Co-designers</div><div class="kpi-delta">Community & partners</div></div>
+      <div class="kpi" style="position:relative"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4ade80,var(--gold))"></div><div class="kpi-val" style="color:#4ade80">9</div><div class="kpi-label">ISSIT Partners</div><div class="kpi-delta">Govt + NGO + UOW</div></div>
+      <div class="kpi" style="position:relative"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4ade80,var(--gold))"></div><div class="kpi-val" style="color:#4ade80">18/25</div><div class="kpi-label">Preschool Enrolments</div><div class="kpi-delta">▲ From near zero</div></div>
+      <div class="kpi" style="position:relative"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4ade80,var(--gold))"></div><div class="kpi-val" style="color:#4ade80">150</div><div class="kpi-label">Jobs Created</div><div class="kpi-delta">Bunnings partnership</div></div>
+    </div>
+
+    <!-- ── SECTION 1: KEY DETAILS & ASIT SCORE ── -->
+    <div class="profile-section-header">Key Details & ASIT Score</div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:2rem">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px"><div style="font-size:20px;margin-bottom:6px">📅</div><div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Established</div><div style="font-size:13px;font-weight:500">2015 (incubation)</div></div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px"><div style="font-size:20px;margin-bottom:6px">📍</div><div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Location</div><div style="font-size:13px;font-weight:500">Bellambi, Wollongong NSW</div></div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px"><div style="font-size:20px;margin-bottom:6px">🎯</div><div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Model</div><div style="font-size:13px;font-weight:500">Collective Impact (Kania & Kramer)</div></div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px"><div style="font-size:20px;margin-bottom:6px">🏠</div><div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Social Housing</div><div style="font-size:13px;font-weight:500">78% of suburb — highest in NSW</div></div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px"><div style="font-size:20px;margin-bottom:6px">📊</div><div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">SEIFA Score</div><div style="font-size:13px;font-weight:500">692 — most disadvantaged in Illawarra</div></div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px"><div style="font-size:20px;margin-bottom:6px">⏳</div><div style="font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Commitment</div><div style="font-size:13px;font-weight:500">10+ years (to at least 2025)</div></div>
+      </div>
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:6px">ASIT Score</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:#4ade80">7.8<span style="font-size:1rem;color:var(--slate)">/10</span></div>
+          <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin:8px 0"><div style="height:100%;width:78%;background:#4ade80;border-radius:2px"></div></div>
+        </div>
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:4px">Funding Tier</div>
+          <div class="tier-badge tier2" style="display:inline-flex">Tier 2 — Growth Grants</div>
+        </div>
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:4px">Social Value Horizon</div>
+          <div style="font-size:13px;color:var(--light)">10–20 year return on social investment — reduced policing, health, welfare and justice costs to government</div>
+        </div>
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:4px">Phase</div>
+          <div style="font-size:13px;color:var(--light)">Phase 2 underway (2019–2021) · Phase 3 planned (2022–2024) · NSW Govt housing renewal now active</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: LEADERSHIP TEAM ── -->
+    <div class="profile-section-header">Leadership Team</div>
+    <div class="people-grid" style="margin-bottom:2rem">
+      <div class="person-card"><div class="person-avatar" style="background:rgba(0,184,160,0.2);color:var(--teal);border:1px solid rgba(0,184,160,0.4)">NS</div><div class="person-info"><div class="person-name">Natasha Scully</div><div class="person-role">ASIT Founder & CEO</div><div class="person-bg">Led Bellambi Collective Impact since 2014 incubation · Backbone team lead</div></div></div>
+      <div class="person-card"><div class="person-avatar" style="background:rgba(244,167,41,0.2);color:var(--gold);border:1px solid rgba(244,167,41,0.4)">GD</div><div class="person-info"><div class="person-name">Gillian Dryland</div><div class="person-role">ASIT Platform Co-founder</div><div class="person-bg">20 years in charity sector · Driving ASIT platform vision</div></div></div>
+      <div class="person-card"><div class="person-avatar" style="background:rgba(124,92,191,0.2);color:#a78bfa;border:1px solid rgba(124,92,191,0.4)">HF</div><div class="person-info"><div class="person-name">Helen Freeland</div><div class="person-role">ASIT — Backbone Team</div><div class="person-bg">Co-facilitates It's Our Place Bellambi with Natasha Scully</div></div></div>
+      <div class="person-card"><div class="person-avatar" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4)">JD</div><div class="person-info"><div class="person-name">Jess Dart</div><div class="person-role">Evaluation Lead — Clear Horizon</div><div class="person-bg">Led scoping workshop & Theory of Change development with Liz Bloom</div></div></div>
+      <div class="person-card"><div class="person-avatar" style="background:rgba(59,130,246,0.2);color:#60a5fa;border:1px solid rgba(59,130,246,0.4)">LG</div><div class="person-info"><div class="person-name">Lauren Gale</div><div class="person-role">Evaluation Framework Author</div><div class="person-bg">Authored Our Place Evaluation Framework — ASIT 2017</div></div></div>
+    </div>
+
+    <!-- ── SECTION 3: 9-DIMENSION PROFILE ── -->
+    <div class="profile-section-header">9-Dimension Profile</div>
+    <div class="dimensions-grid" style="margin-bottom:2rem">
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Governance & Accountability</div><div class="dim-score-val" style="color:#4ade80">8.5/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:85%;background:#4ade80"></div></div><div class="dim-detail">ACNC registered. ISSIT Advisory Board with senior leaders from 9 government and NGO organisations. Clear governance structure under Trust model. Evaluation framework authored by Clear Horizon. ASIT as neutral backbone is formally constituted.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Impact & Results</div><div class="dim-score-val" style="color:#4ade80">7.5/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:75%;background:#4ade80"></div></div><div class="dim-detail">110 of 123 actions completed. Preschool enrolments from near zero to 18/25 families. Volunteering up from 13.3% to 15.3%. Crime reporting increased (positive indicator). DV mentoring program active. AEDC childhood vulnerability scores improved 2015–2018. Attribution still developing — long-term results expected over 10–20 year horizon.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Financial Sustainability</div><div class="dim-score-val" style="color:var(--gold)">7.0/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:70%;background:var(--gold)"></div></div><div class="dim-detail">NSW FACS (major funder through Future Directions strategy). Multi-agency resource pooling across ISSIT members. In-kind contributions tracked. Bunnings and Google corporate partnerships secured. Ongoing funding diversification needed for 10+ year sustainability.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Geographic Reach</div><div class="dim-score-val" style="color:#4ade80">8.0/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:80%;background:#4ade80"></div></div><div class="dim-detail">Whole-of-suburb place-based model covering all 4,011 residents and 1,061 families. Deep Wollongong/Illawarra-Shoalhaven roots. Model already expanded to Bundaleer, East Nowra and Warrawong. NSW Homes housing renewal now underway at Bellambi estate.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Program Maturity</div><div class="dim-score-val" style="color:#4ade80">8.0/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:80%;background:#4ade80"></div></div><div class="dim-detail">10 years operating. Theory of Change developed with Clear Horizon consultants. 4-phase implementation model (2015–2025+). Action plans co-designed with 800+ community members across Phase 1 and Phase 2. Internationally recognised Collective Impact framework (Kania & Kramer).</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Leadership Quality</div><div class="dim-score-val" style="color:#4ade80">8.5/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:85%;background:#4ade80"></div></div><div class="dim-detail">Natasha Scully is a nationally recognised social impact innovator. Advisory Board includes NSW Premier & Cabinet, Health, Education, Police leadership. Clear Horizon (Jess Dart) provides independent evaluation expertise. Adaptive management approach embedded.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Volunteer Engagement</div><div class="dim-score-val" style="color:var(--gold)">7.5/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:75%;background:var(--gold)"></div></div><div class="dim-detail">Bellambi Safety Group self-organising monthly — community-led. Volunteering rate rising from 13.3% to 15.3% (goal 18.1% by 2025). Community events growing in participation. Google provided 100+ teachers with free professional development. Aboriginal community self-organising emerging.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Community Embeddedness</div><div class="dim-score-val" style="color:#4ade80">9.0/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:90%;background:#4ade80"></div></div><div class="dim-detail">Deepest possible community embeddedness — the community IS the project. Action plan co-designed with 800+ residents. Children's drawings used as baseline insight. Community voice is Principle #1. Aboriginal community on Dharawal Country specifically included. Community leaders emerging organically.</div></div>
+      <div class="dim-card"><div class="dim-header"><div class="dim-name">Transparency</div><div class="dim-score-val" style="color:#4ade80">8.0/10</div></div><div class="dim-bar"><div class="dim-bar-fill" style="width:80%;background:#4ade80"></div></div><div class="dim-detail">First Annual Report published 2016/17 with full data transparency including baseline vs current. Clear Horizon evaluation framework published. Data sources documented (ABS, BOCSAR, ACARA, AEDC). Honest about attribution challenges. ACNC registered — public financials available.</div></div>
+    </div>
+
+    <!-- ── SECTION 4: MAJOR INITIATIVES ── -->
+    <div class="profile-section-header">Major Initiatives — Success & Outcomes</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:2rem">
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px">
+        <div style="font-size:22px;margin-bottom:8px">🏫</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#4ade80;margin-bottom:6px">Early Learning Initiative</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.7;margin-bottom:10px">Near-zero preschool enrolments in 2015 identified as critical vulnerability. ISSIT delivered information packs to 25 families with preschool-age children in social housing.</div>
+        <div style="background:rgba(34,197,94,0.08);border-radius:8px;padding:8px 10px;font-size:12px"><span style="color:#4ade80;font-weight:600">Outcome:</span> <span style="color:var(--light)">18 of 25 families enrolled children in preschool by 2018. AEDC childhood vulnerability scores improved. Children arriving at Bellambi Public School increasingly school-ready.</span></div>
+      </div>
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px">
+        <div style="font-size:22px;margin-bottom:8px">👮</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#4ade80;margin-bottom:6px">DV Mentoring Program</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.7;margin-bottom:10px">Domestic violence identified as major community concern — residents didn't know who to turn to or felt unsafe reporting. NSW Police and TAFE Illawarra co-designed a community mentor program.</div>
+        <div style="background:rgba(34,197,94,0.08);border-radius:8px;padding:8px 10px;font-size:12px"><span style="color:#4ade80;font-weight:600">Outcome:</span> <span style="color:var(--light)">Community mentors now trusted first contacts for DV support. Crime reporting increased significantly. First proactive Police-FACS door knock in Wollongong LAC — model expanded to other Illawarra estates.</span></div>
+      </div>
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px">
+        <div style="font-size:22px;margin-bottom:8px">💻</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#4ade80;margin-bottom:6px">Google STEM Partnership</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.7;margin-bottom:10px">Facilitated collaboration between Corrimal Community of Schools and Google to improve STEM outcomes and school reputation. 100+ teachers received free professional development.</div>
+        <div style="background:rgba(34,197,94,0.08);border-radius:8px;padding:8px 10px;font-size:12px"><span style="color:#4ade80;font-weight:600">Outcome:</span> <span style="color:var(--light)">Corrimal HS recognised as leader in 21st Century Learning and STEM-focused school. Students won Social Change through STEM competition in 2017.</span></div>
+      </div>
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px">
+        <div style="font-size:22px;margin-bottom:8px">🛠️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#4ade80;margin-bottom:6px">Bunnings Employment Pipeline</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.7;margin-bottom:10px">ISSIT identified Bunnings owned land in Bellambi. Engaged national and local management to create community employment pathways before store opening. Sessions held at Neighbourhood Centre and Surf Club on job applications.</div>
+        <div style="background:rgba(34,197,94,0.08);border-radius:8px;padding:8px 10px;font-size:12px"><span style="color:#4ade80;font-weight:600">Outcome:</span> <span style="color:var(--light)">Bunnings opened December 2017 — 150 jobs created. Local residents employed. Labour force participation in Bellambi increased from 40.69% to 41.37%.</span></div>
+      </div>
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px">
+        <div style="font-size:22px;margin-bottom:8px">🏡</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#4ade80;margin-bottom:6px">Bellambi Safety Group</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.7;margin-bottom:10px">Community-led safety group formed in 2015. Meets monthly to clean rubbish, remove graffiti and raise awareness. Initially facilitated by ISSIT — now self-organising and expanding independently.</div>
+        <div style="background:rgba(34,197,94,0.08);border-radius:8px;padding:8px 10px;font-size:12px"><span style="color:#4ade80;font-weight:600">Outcome:</span> <span style="color:var(--light)">Community garden no damage in 6 months. Residents taking ownership of litter. Graffiti reduced. Community feels 60% cleaner. Residents now report feeling safe — including new solo residents.</span></div>
+      </div>
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:18px">
+        <div style="font-size:22px;margin-bottom:8px">🤝</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#4ade80;margin-bottom:6px">Neighbourhood Centre Hub</div>
+        <div style="font-size:12px;color:var(--slate);line-height:1.7;margin-bottom:10px">WCC, FACS, Community Industry Group and ASIT collaborated to strengthen governance and compliance at the Bellambi Neighbourhood Centre — identified as the community's core hub in the Action Plan.</div>
+        <div style="background:rgba(34,197,94,0.08);border-radius:8px;padding:8px 10px;font-size:12px"><span style="color:#4ade80;font-weight:600">Outcome:</span> <span style="color:var(--light)">Centre now legally compliant and governance strengthened. 9 community events held. Weekly coffee groups running. Community reporting it feels like family. Young people increasingly included.</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── SECTION 5: DONOR VIEW ── -->
+    <div class="profile-section-header">Donor View</div>
+    <div class="donor-grid" style="margin-bottom:2rem">
+      <div class="donor-card">
+        <div class="donor-card-title">Why This Project Matters to Donors</div>
+        <div class="impact-row"><div class="impact-icon">🏠</div><div class="impact-text"><div class="impact-label">Social Housing Concentration</div><div style="font-size:11px;color:var(--slate)">Highest in any NSW suburb</div></div><div class="impact-val">78%</div></div>
+        <div class="impact-row"><div class="impact-icon">👶</div><div class="impact-text"><div class="impact-label">Preschool enrolments</div><div style="font-size:11px;color:var(--slate)">From near zero in 2015</div></div><div class="impact-val">18/25</div></div>
+        <div class="impact-row"><div class="impact-icon">🤝</div><div class="impact-text"><div class="impact-label">Community Actions Completed</div><div style="font-size:11px;color:var(--slate)">Of 123 co-designed actions</div></div><div class="impact-val">110</div></div>
+        <div class="impact-row"><div class="impact-icon">💼</div><div class="impact-text"><div class="impact-label">Jobs Created (Bunnings)</div><div style="font-size:11px;color:var(--slate)">Local employment pipeline</div></div><div class="impact-val">150</div></div>
+        <div class="impact-row"><div class="impact-icon">🏛️</div><div class="impact-text"><div class="impact-label">Government Partners Engaged</div><div style="font-size:11px;color:var(--slate)">ISSIT member organisations</div></div><div class="impact-val">9</div></div>
+        <div class="impact-row"><div class="impact-icon">🏘️</div><div class="impact-text"><div class="impact-label">NSW Govt Housing Renewal</div><div style="font-size:11px;color:var(--slate)">Direct result of project impact</div></div><div class="impact-val">Active</div></div>
+      </div>
+      <div>
+        <div class="donor-card" style="margin-bottom:12px">
+          <div class="donor-card-title">The Investment Case</div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.7;margin-bottom:14px">Bellambi is proof that ASIT's Collective Impact model works. Starting from one of NSW's most disadvantaged postcodes — 78% social housing, SEIFA 692, 92.8% without wage income — community-led action has produced measurable change within 3 years and triggered NSW Government housing renewal investment.</p>
+          <div style="background:rgba(34,197,94,0.06);border-radius:10px;padding:14px;margin-bottom:12px">
+            <div style="font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.08em">Long-term ROI to Government</div>
+            <div style="font-size:13px;color:#4ade80;margin-top:6px;line-height:1.6">Reduced policing · Reduced juvenile justice · Reduced mental health costs · Reduced welfare dependency · Increased tax base</div>
+          </div>
+          <button class="give-btn" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white">💚 Support Project Bellambi</button>
+          <div class="trust-signals">
+            <div class="trust-item"><span class="trust-check">✓</span> ACNC Registered</div>
+            <div class="trust-item"><span class="trust-check">✓</span> ASIT Subsidiary</div>
+            <div class="trust-item"><span class="trust-check">✓</span> 9 Govt Partners</div>
+            <div class="trust-item"><span class="trust-check">✓</span> Clear Horizon Evaluated</div>
+          </div>
+        </div>
+        <div class="donor-card">
+          <div class="donor-card-title">Funding Needs</div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:12px"><span style="color:#4ade80;margin-top:1px">→</span><span style="color:var(--light)">Phase 3 Action Plan delivery ($200K+)</span></div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:12px"><span style="color:#4ade80;margin-top:1px">→</span><span style="color:var(--light)">Longitudinal wellbeing measurement ($60K)</span></div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:12px"><span style="color:#4ade80;margin-top:1px">→</span><span style="color:var(--light)">Model replication — 3 new communities ($150K)</span></div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:12px"><span style="color:#4ade80;margin-top:1px">→</span><span style="color:var(--light)">Social investment actuarial modelling ($80K)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 6: POSITIVES, STRENGTHS & CHALLENGES ── -->
+    <div class="profile-section-header">Positives, Strengths & Challenges</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:2rem">
+
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">✓ Positives</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">NSW Government's Homes NSW housing renewal at Bellambi is a direct signal that the project has shifted the narrative about the community at the highest policy level.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Results within 2 years exceeded expectations — Natasha Scully: "We've seen results we were not expecting." This inspired rollout to Bundaleer, East Nowra and Warrawong.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Community-led model working — Bellambi Safety Group self-organising without ISSIT facilitation. True community ownership emerging.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">Cross-sector collaboration model is replicable and scalable. Police and FACS joint door knock approach now expanded to other Illawarra estates.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.2);border-radius:14px;padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">⭐ Strengths</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">ASIT as neutral backbone is the key structural strength — no single agency controls the agenda. Government, NGOs and community all at the table as equals.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Theory of Change covers all 5 levels (Foundations → Population Impact) — one of the most comprehensive frameworks for place-based collective impact in Australia.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Formal evaluation by Clear Horizon (Jess Dart) gives the model academic and sector credibility — essential for major philanthropy and government investment.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">First Nations inclusion from the outset — Dharawal land acknowledgement embedded in all reporting. Aboriginal community groups becoming increasingly self-organised.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,107,107,0.05);border:1px solid rgba(255,107,107,0.2);border-radius:14px;padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#f87171;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">⚡ Challenges</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Attribution is the hardest problem — population-level change takes 10–20 years. Funders expecting short-term results will struggle with this model's timeline.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Data collection across multiple government agencies using different reporting periods creates gaps. The "missing middle" — between action tracking and population outcomes — is not yet filled.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6;padding-bottom:10px;border-bottom:1px solid var(--border)">Financial sustainability beyond Phase 1 government funding is unresolved. Securing multi-year philanthropic partnerships is critical for the 10+ year commitment.</div>
+          <div style="font-size:12px;color:var(--light);line-height:1.6">Labour force participation at 41.37% remains far below NSW average of 93.7% — employment outcomes are the longest-lag indicator and require sustained 10+ year investment.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── SECTION 7: SCALE GUIDANCE & MAJOR DONOR ALIGNMENT ── -->
+    <div class="profile-section-header">Guidance for Scale & Major Donor Alignment</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:2rem">
+
+      <div class="donor-card">
+        <div class="donor-card-title">What Would Accelerate Scale</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📊</div>
+            <div><div style="font-size:12px;font-weight:600;margin-bottom:3px">Actuarial Social Investment Modelling</div><div style="font-size:11px;color:var(--slate);line-height:1.6">Convert qualitative outcomes to economic return data. ISSIT framework designed for this — needs dedicated funding. Would unlock Social Impact Bond pathway by 2026.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🏘️</div>
+            <div><div style="font-size:12px;font-weight:600;margin-bottom:3px">Replicate in 3–5 NSW Communities</div><div style="font-size:11px;color:var(--slate);line-height:1.6">Rollout to Bundaleer, East Nowra and Warrawong already started. Scaling requires backbone funding of $300K–$500K per community per year for minimum 5 years.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🔗</div>
+            <div><div style="font-size:12px;font-weight:600;margin-bottom:3px">ASIT Intelligence Platform Integration</div><div style="font-size:11px;color:var(--slate);line-height:1.6">Connect Bellambi's community data to the ASIT platform — enabling real-time population dashboards visible to funders and government.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,0.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📋</div>
+            <div><div style="font-size:12px;font-weight:600;margin-bottom:3px">Multi-Funder Trust Fund Structure</div><div style="font-size:11px;color:var(--slate);line-height:1.6">Clear Horizon recommends a multi-funder trust with common reporting against a "funder roadmap" — ASIT is perfectly positioned to host this structure.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="donor-card">
+        <div class="donor-card-title">ASIT Compliance & Framework Alignment</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:rgba(0,184,160,0.06);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:var(--teal);margin-bottom:3px">Commonwealth Grants Rules 2024</div>
+            <div style="font-size:11px;color:var(--slate);line-height:1.5">Proportionality principle applied — community capacity assessed before intervention. Government investment matches readiness stage.</div>
+          </div>
+          <div style="background:rgba(244,167,41,0.06);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:var(--gold);margin-bottom:3px">NSW OSII Social Impact Investment</div>
+            <div style="font-size:11px;color:var(--slate);line-height:1.5">ISSIT evaluation framework designed to convert to a full Social Impact Bond by 2026. Actuarial modelling pathway in place.</div>
+          </div>
+          <div style="background:rgba(124,92,191,0.06);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:#a78bfa;margin-bottom:3px">Standards Australia SA HB 204:2022</div>
+            <div style="font-size:11px;color:var(--slate);line-height:1.5">Lived experience at the centre — community voice is Principle #1. Evaluation uses validated wellbeing scales (Personal Wellbeing Index, Buckner's Scale, Warwick Edinburgh Mental Wellbeing Scale).</div>
+          </div>
+          <div style="background:rgba(59,130,246,0.06);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:#60a5fa;margin-bottom:3px">ACNC Governance Standards</div>
+            <div style="font-size:11px;color:var(--slate);line-height:1.5">ISSIT Advisory Board with 9 senior government and NGO leaders. ASIT as neutral backbone meets all ACNC board accountability requirements.</div>
+          </div>
+          <div style="background:rgba(34,197,94,0.06);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:#4ade80;margin-bottom:3px">NSW Future Directions Strategy</div>
+            <div style="font-size:11px;color:var(--slate);line-height:1.5">Theory of Change explicitly designed to support NSW Future Directions. Linked to Human Services Outcomes Framework and NSW Premier's Priorities.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── SECTION 8: THEORY OF CHANGE SUMMARY ── -->
+    <div class="profile-section-header">Theory of Change — 5 Levels</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:2rem">
+      <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#4ade80;margin-bottom:6px;font-weight:600">LEVEL 1</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Foundations</div>
+        <div style="font-size:10px;color:var(--slate);line-height:1.6">ASIT as backbone · Legal & governance setup · Community readiness assessment · Leadership identification</div>
+      </div>
+      <div style="background:rgba(244,167,41,0.06);border:1px solid rgba(244,167,41,0.2);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:6px;font-weight:600">LEVEL 2</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Strategic Approaches</div>
+        <div style="font-size:10px;color:var(--slate);line-height:1.6">Co-designed action plan · Community capacity building · Cross-sector collaboration · Data analysis</div>
+      </div>
+      <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#60a5fa;margin-bottom:6px;font-weight:600">LEVEL 3</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Early Signs</div>
+        <div style="font-size:10px;color:var(--slate);line-height:1.6">Community self-governance · Aboriginal groups organising · Working groups mobilising · Safety Group active</div>
+      </div>
+      <div style="background:rgba(124,92,191,0.06);border:1px solid rgba(124,92,191,0.2);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#a78bfa;margin-bottom:6px;font-weight:600">LEVEL 4</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">System Changes</div>
+        <div style="font-size:10px;color:var(--slate);line-height:1.6">Community pride · Services collaborating · New enterprises · Narrative improving · NSW Govt renewal</div>
+      </div>
+      <div style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.2);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#f87171;margin-bottom:6px;font-weight:600">LEVEL 5</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">Population Impact</div>
+        <div style="font-size:10px;color:var(--slate);line-height:1.6">Safety · Education · Employment · Economic impacts · Social inclusion · 10–20 year horizon</div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 9: WHY BELLAMBI SCORES LOWER THAN RAISE ── -->
+    <div class="profile-section-header">Understanding the Score — Why 7.8 vs Raise's 8.9</div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:2rem">
+
+      <p style="font-size:14px;color:var(--light);line-height:1.8;margin-bottom:20px">A score of <strong style="color:#4ade80">7.8/10</strong> for Project Bellambi compared to Raise Foundation's <strong style="color:var(--teal)">8.9/10</strong> is not a reflection of quality — it reflects a fundamental difference in <em>model type</em>. Bellambi is a systems-change Collective Impact initiative. Raise is a direct service delivery charity. The ASIT scoring framework, like all charity assessment tools globally, is inherently better suited to measuring organisations that deliver countable services to countable people. This is an important limitation donors should understand.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px">
+
+        <div style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.15);border-radius:12px;padding:14px">
+          <div style="font-size:18px;margin-bottom:8px">📊</div>
+          <div style="font-size:12px;font-weight:600;color:#f87171;margin-bottom:6px">Impact Measurement</div>
+          <div style="font-size:11px;color:var(--slate);line-height:1.6;margin-bottom:8px">Raise uses independent RCT-style evaluation with propensity score matching across 10,000+ individual mentees. Results are direct, attributable and publishable.</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.6">Bellambi's population-level outcomes span 10–20 years across 4,000 residents. Attribution of community change to any single initiative is a known sector-wide challenge — even Clear Horizon notes this as the hardest problem in place-based evaluation.</div>
+        </div>
+
+        <div style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.15);border-radius:12px;padding:14px">
+          <div style="font-size:18px;margin-bottom:8px">💰</div>
+          <div style="font-size:12px;font-weight:600;color:#f87171;margin-bottom:6px">Financial Sustainability</div>
+          <div style="font-size:11px;color:var(--slate);line-height:1.6;margin-bottom:8px">Raise has $5M+ in diversified revenue including Google.org, Macquarie Foundation and a growing corporate base. Revenue has grown consistently for 18 years.</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.6">Bellambi is still building its multi-funder model beyond government. The 10+ year commitment requires sustained philanthropic partnerships not yet fully secured — a challenge Clear Horizon explicitly identified.</div>
+        </div>
+
+        <div style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.15);border-radius:12px;padding:14px">
+          <div style="font-size:18px;margin-bottom:8px">🎯</div>
+          <div style="font-size:12px;font-weight:600;color:#f87171;margin-bottom:6px">Model Type</div>
+          <div style="font-size:11px;color:var(--slate);line-height:1.6;margin-bottom:8px">Raise delivers a structured, replicable mentoring program. Each intervention is bounded, measurable and directly linked to an individual young person.</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.6">Bellambi operates across all cohorts, all domains, whole of community simultaneously. No single charity evaluation framework in the world scores this model type as highly as direct service delivery — it is a structural scoring gap, not a performance gap.</div>
+        </div>
+
+        <div style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.15);border-radius:12px;padding:14px">
+          <div style="font-size:18px;margin-bottom:8px">⏳</div>
+          <div style="font-size:12px;font-weight:600;color:#f87171;margin-bottom:6px">Program Maturity</div>
+          <div style="font-size:11px;color:var(--slate);line-height:1.6;margin-bottom:8px">Raise has 18 years of published, peer-reviewed evaluations. Its evidence base is exceptionally mature for an Australian NFP of any size.</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.6">Bellambi is 10 years into a 20-year model — exactly where Clear Horizon's lessons learned say the evidence is hardest to capture. ASIT scores for Bellambi will rise significantly as population data matures through Phase 3 and beyond.</div>
+        </div>
+
+        <div style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.15);border-radius:12px;padding:14px">
+          <div style="font-size:18px;margin-bottom:8px">🏛️</div>
+          <div style="font-size:12px;font-weight:600;color:#f87171;margin-bottom:6px">Who Should Fund This</div>
+          <div style="font-size:11px;color:var(--slate);line-height:1.6;margin-bottom:8px">Raise is ideal for philanthropic foundations, tech donors and corporates who want clear, countable impact per dollar with social return data.</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.6">Bellambi is ideal for government (NSW FACS, DCJ), place-based philanthropy (Paul Ramsay Foundation, FRRR) and systems-change investors who understand that transforming intergenerational disadvantage cannot be counted in annual cohorts.</div>
+        </div>
+
+      </div>
+
+      <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:18px;display:flex;gap:16px;align-items:flex-start">
+        <div style="font-size:28px;flex-shrink:0">💡</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#4ade80;margin-bottom:6px">The ASIT View</div>
+          <div style="font-size:13px;color:var(--light);line-height:1.7">A 7.8/10 for a Collective Impact model tackling Australia's highest concentration of social housing disadvantage — from scratch, with no precedent — is exceptional performance. Raise is a more "scoreable" model, not a more impactful one. As ASIT develops a dedicated scoring dimension for place-based and systems-change initiatives, Bellambi's score trajectory will reflect what it truly is: <strong>Australia's most ambitious community transformation project, and the proof of concept for everything ASIT stands for.</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 <div id="view-funding" class="view">
 
   <!-- Section 1: Funding Architecture -->
@@ -1576,7 +1939,7 @@ function showView(view) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + view).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  const labels = { master: 'ASIT Overview', charities: 'Charities', funding: 'ASIT Framework' };
+  const labels = { master: 'ASIT Overview', charities: 'Charities', funding: 'ASIT Framework', bellambi: 'Project Bellambi' };
   document.querySelectorAll('.nav-btn').forEach(b => {
     if (b.textContent.trim() === labels[view]) b.classList.add('active');
   });
